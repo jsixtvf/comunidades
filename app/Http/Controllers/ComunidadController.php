@@ -54,7 +54,7 @@ class ComunidadController extends Controller {
           abort(401, 'You cannot see');
           } */
 
-        return view('comunidades.create', ['comunidad' => new Comunidad]);
+        return view('comunidades.create', ['comunidad' => new Comunidad, 'title' => 'New Community', 'btnText1' => 'Save', 'btnText2' => 'Cancel']);
     }
 
     /**
@@ -127,7 +127,10 @@ class ComunidadController extends Controller {
     public function edit(Comunidad $comunidad) {
         //
         return view('comunidades.edit', [
-            'comunidad' => $comunidad
+            'comunidad' => $comunidad, 
+            'title' => 'Edit Comunidad', 
+            'btnText1' => 'Update', 
+            'btnText2' => 'Cancel'
         ]);
     }
 

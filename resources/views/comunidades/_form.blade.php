@@ -1,5 +1,10 @@
 @csrf
 
+<div class="inline-flex">
+    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
+    <x-jet-danger-button  onclick="location.href ='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
+</div>
+
 <x-jet-validation-errors></x-jet-validation-errors>
 
 <div class="form-group">
@@ -89,6 +94,3 @@
         </div>
     </div>
 </div>
-<x-jet-button>{{ __($btnText1) }}</x-jet-button>
-<x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
-<br><br>
