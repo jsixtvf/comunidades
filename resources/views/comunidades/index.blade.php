@@ -13,13 +13,6 @@
         <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>
     @endif
 
-
-    <!--  con button no funciona no coge href y usamos la etiqueta a -->
-
-     <div class="col-12 col-sm-10 col-lg-6 mx-auto">
-    <button class="btn btn-primary btn-lg btn-block"> @lang('Delete')</button>
-    </div>
-
     @if ($user->comunidades->count() > 0)
         <table class="table table-responsive">
             <thead>
