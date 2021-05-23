@@ -58,4 +58,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function comunidades() {
+        return $this->belongsToMany(Comunidad::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
+    }
+    
+    public function role() {
+        return $this->belongsToMany(Comunidad_User::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
+    }
+
 }
