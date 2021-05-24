@@ -54,7 +54,13 @@ class ComunidadController extends Controller {
           abort(401, 'You cannot see');
           } */
 
-        return view('comunidades.create', ['comunidad' => new Comunidad, 'title' => 'New Community', 'btnText1' => 'Save', 'btnText2' => 'Cancel']);
+        return view('comunidades.create', [
+            'comunidad' => new Comunidad, 
+            'title' => 'New Community', 
+            'btnText1' => 'Save', 
+            'btnText2' => 'Cancel', 
+            'btndisabled' => ''
+            ]);
     }
 
     /**
@@ -115,6 +121,8 @@ class ComunidadController extends Controller {
 
         return view('comunidades.alt_show', [
             'comunidad' => $comunidad,
+            'btndisabled' => 'btndisabled',
+            'btndisabled' => 'disabled'
         ]);
     }
 
@@ -130,7 +138,8 @@ class ComunidadController extends Controller {
             'comunidad' => $comunidad, 
             'title' => 'Edit Comunidad', 
             'btnText1' => 'Update', 
-            'btnText2' => 'Cancel'
+            'btnText2' => 'Cancel',
+            'btndisabled' => ' '
         ]);
     }
 

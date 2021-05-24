@@ -26,7 +26,7 @@
 
         <h3>@lang('Denomination') {{ $comunidad->denom }}</h3>
 
-        @include('comunidades._comunidad')
+        @include('comunidades.create',['title' => 'Show', 'btnText1' => 'Back', 'btnText2' => 'Cancel', 'btndisabled' => $btndisabled])
 
     </div>
     @endsection
