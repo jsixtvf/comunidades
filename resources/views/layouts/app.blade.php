@@ -34,8 +34,8 @@
                 @lang('RandiFincas')
             </x-jet-nav-link>
 
-            <div class="accordion border-0" id="accordionExample">
-                <div class="accordion-item border-0">
+            <div class="accordion px-0 border-0" id="accordionExample">
+                <div class="accordion-item px-0 border-0">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             @lang('ADMINISTRATOR')
@@ -47,6 +47,14 @@
                             <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                                 {{ __($link['text']) }}
                             </x-jet-responsive-nav-link>
+                            @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
+                                @forelse($navDarkCommunitiesLinks as $link2)
+                                    <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href']) }}" :active="request()->routeIs($link2['name'])">
+                                        {{ __($link2['text']) }}
+                                    </x-jet-responsive-nav-link>
+                                @empty
+                                @endforelse
+                            @endif
                             @empty
                             <h1>El menú no esta disponible</h1>
                             @endforelse
@@ -83,7 +91,7 @@
                 </div>
             </header>
             @endif
-
+            
             <div class="py-2 px-2">
                 {{ $slot }}
             </div>

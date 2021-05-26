@@ -23,10 +23,14 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
+    //protected ComunidadSeleccionada = null;
+    
     protected $fillable = [
         'name',
         'email',
         'password',
+        'ComunidadSelecciondada'
     ];
 
     /**

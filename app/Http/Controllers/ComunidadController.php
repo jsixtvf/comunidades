@@ -20,27 +20,20 @@ class ComunidadController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-// Obtenemos la instancia del usuario autenticado
-//$user = auth()->user();
-//también podemos obtener solo el identificador
-//$user_id = auth()->id();
-// obtenemos todas las comunidades de las que es miembro el usuario autenticado
-//return auth()->user()->comunidades;
-//dd(auth()->user()->currentTeam);
-
+    public function index(Request $request) {
+        
+        if (! $request->session()->has('activeCommunity')) {
+            $request->session()->put('activeCommunity', null);
+        }
 
         $user = auth()->user();
-
-//también podemos obtener solo el identificador
-//$user_id = auth()->id();
-// obtenemos todas las comunidades de las que es miembro el usuario autenticado
-// return auth()->user()->comunidades;
-        return view('comunidades.index', ['user' => $user,
-            'comunidades' => $user->comunidades]);
-
-//      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
-//      return $resultado;
+        
+        dd(auth()->user()->comunidades);
+        
+        return view('comunidades.index', [
+            'user' => $user,
+            'comunidades' => $user->comunidades
+        ]);
     }
 
     /**
@@ -49,10 +42,6 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-
-        /* if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
-          abort(401, 'You cannot see');
-          } */
 
         return view('comunidades.create', [
             'comunidad' => new Comunidad, 
@@ -97,16 +86,6 @@ class ComunidadController extends Controller {
             'created_at' => $new_comunidad->created_at,
             'updated_at' => $new_comunidad->updated_at
         ]);
-
-        /*if (TeamUser::where('team_id', '=', $user->currentTeam->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
-            TeamUser::create([
-                'team_id' => $user->currentTeam->id,
-                'user_id' => $user->id,
-                'role' => '2',
-                'created_at' => $new_comunidad->created_at,
-                'updated_at' => $new_comunidad->updated_at
-            ]);
-        }*/
 
         return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-primary']);
     }
@@ -178,11 +157,13 @@ class ComunidadController extends Controller {
         return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
     }
 
-    public function select(Comunidad $comunidad) {
+    public function select(Comunidad $comunidad, Request $request) {
 
         $this->msj = "Has seleccionado la comunidad ";
-
-        return $this->msj . $comunidad;
+        
+        $request->session()->put('activeCommunity', $comunidad);
+                
+        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-primary']);
     }
 
 }

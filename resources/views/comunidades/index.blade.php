@@ -27,7 +27,8 @@
                 <td>{{$comunidad->secretary}}</td>
                 <td>{{$comunidad->responsable}}</td>
                 <td class="flex border-0">
-                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.edit', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
+                    <!--<x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.edit', $comunidad) }}'">{{ __('Select') }}</x-jet-button>-->
+                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.select', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
                     <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
                 </td>
         </tr>
@@ -36,6 +37,7 @@
         @include('partials.alert-notcreatedyet')
         @endforelse
     </table>
+    
     @else
     @include('partials.alert-notcreatedyet')
     @endif

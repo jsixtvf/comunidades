@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        \Illuminate\Support\Facades\View::share('activeCommunity', null);
     }
 
     /**
@@ -42,5 +42,33 @@ class AppServiceProvider extends ServiceProvider
             ['href' => 'comunidades.index', 'name' => 'comunidades.restore', 'text' => 'Presupuestos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.eliminar', 'text' => 'Honorarios'],
             ]);
+        
+        \Illuminate\Support\Facades\View::share('navDarkCommunitiesLinks', [
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Acciones'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Comunidad'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Contactos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Conceptos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Convocatorias'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Cuentas bancarias'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Cuotas'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Diario'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Distribuciones'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Documentos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Fondos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Foro'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Importaciones'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Incidencias'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Informes'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Liquidaciones'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Movimientos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Obligaciones'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Posicion'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Presupuestos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Propiedades'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Remesas'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Lecturas de agua'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Saldos iniciales']
+        ]);
+        
     }
 }

@@ -18,9 +18,6 @@ yarn-error.log
 
 
 storage/*.key
-.env
-Homestead.yaml
-Homestead.json
 /.vagrant
 .phpunit.result.cache
 /nbproject/private/

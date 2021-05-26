@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
+Route::middleware('auth')->get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'select'])->name('comunidades.select');
 //Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -40,6 +41,8 @@ Route::resource('liquidacion', LiquidacionController::class);
 Route::resource('movimientos', MovimientosController::class);
 
 Route::resource('ingresos', IngresosController::class);
+
+Route::resource('proveedores', ProveedorController::class)->parameters(['proveedores' => 'proveedor'])->names('proveedores');
 
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
