@@ -49,7 +49,7 @@
                             </x-jet-responsive-nav-link>
                             @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
                                 @forelse($navDarkCommunitiesLinks as $link2)
-                                    <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href']) }}" :active="request()->routeIs($link2['name'])">
+                                    <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
                                         {{ __($link2['text']) }}
                                     </x-jet-responsive-nav-link>
                                 @empty

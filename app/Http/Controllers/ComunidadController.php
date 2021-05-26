@@ -10,6 +10,7 @@ use App\Models\Team;
 use App\Http\Requests\SaveComunidadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ComunidadController extends Controller {
 
@@ -27,8 +28,6 @@ class ComunidadController extends Controller {
         }
 
         $user = auth()->user();
-        
-        dd(auth()->user()->comunidades);
         
         return view('comunidades.index', [
             'user' => $user,
@@ -87,7 +86,7 @@ class ComunidadController extends Controller {
             'updated_at' => $new_comunidad->updated_at
         ]);
 
-        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-success']);
     }
 
     /**
@@ -132,10 +131,10 @@ class ComunidadController extends Controller {
     public function update(Comunidad $comunidad, SaveComunidadRequest $request) {
 
         $this->msj = 'La comunidad fué actualizada con éxito';
+        
+        $comunidad->update($request->validated());
 
-        $comunidad->update();
-
-        return redirect()->route('comunidades.show', $community)->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.show', $comunidad)->with('status', [$this->msj, 'alert-success']);
     }
 
     /**
