@@ -30,6 +30,7 @@ class CreateComunidadUsersTable extends Migration {
             $table->index(['comunidad_id', 'user_id']);
         
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

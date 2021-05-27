@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder {
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        //Comunidad_User::factory(15)->create();
         
         //$this->call([ComunidadUserSeeder::class]);
 
