@@ -28,7 +28,7 @@ class SaveComunidadRequest extends FormRequest
     public function rules()
     {
         return [
-            'cif' => ['required', 'alpha_num', 'size:9' , Rule::unique('comunidades')->ignore($this->route('comunidad'))],
+            'cif' => ['required', 'alpha_num', 'size:9', Rule::unique('comunidades')->ignore($this->route('comunidad'))],
             'fechalta' => 'required|date',
             'activa' => 'boolean',
             'gratuita' => 'boolean',

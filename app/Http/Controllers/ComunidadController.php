@@ -62,6 +62,8 @@ class ComunidadController extends Controller {
         $this->msj = 'La comunidad fué creada con éxito';
 
         $gratuita = true;
+        
+        $user = auth()->user();
 
         if (auth()->user()->comunidades->count() >= env('APP_LIMIT_MAX_FREE_COMMUNITIES')) {
             $gratuita = false;
@@ -74,9 +76,7 @@ class ComunidadController extends Controller {
 
         Comunidad::create($request->validated());
 
-        $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
-
-        $user = auth()->user();
+        $new_comunidad = Comunidad::latest('created_at')->first();
 
         Comunidad_User::create([
             'comunidad_id' => $new_comunidad->id,
@@ -151,6 +151,10 @@ class ComunidadController extends Controller {
 
         $this->msj = 'La comunidad fué eliminada con éxito';
 
+        $comunidad::latest('updated_at')->first();
+        
+        Comunidad_User::where('comunidad_id', '=', $comunidad->id)->delete();
+        
         $comunidad->delete();
 
         return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
@@ -159,10 +163,19 @@ class ComunidadController extends Controller {
     public function select(Comunidad $comunidad, Request $request) {
 
         $this->msj = "Has seleccionado la comunidad ";
+        $color = 'alert-success';
         
-        $request->session()->put('activeCommunity', $comunidad);
+        if (! $request->session()->has('activeCommunity')) {
+            $request->session()->put('activeCommunity', $comunidad);
+        } else {
+            $this->msj = "Has salido de la comunidad seleccionada";
+            $color = 'alert-danger';
+            $request->session()->put('activeCommunity', null);
+        }
+        
+        
                 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, $color]);
     }
 
 }

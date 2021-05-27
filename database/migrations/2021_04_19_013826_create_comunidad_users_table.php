@@ -17,7 +17,10 @@ class CreateComunidadUsersTable extends Migration {
             $table->unsignedBigInteger('comunidad_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('role_id');
-
+        
+            $table->timestamps();
+            $table->softDeletes();
+            
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
 
@@ -26,11 +29,8 @@ class CreateComunidadUsersTable extends Migration {
 
             $table->foreign('role_id')->references('id')->on('roles')
                     ->onDelete('cascade');
-
+            
             $table->index(['comunidad_id', 'user_id']);
-        
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 
