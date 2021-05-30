@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\gastos;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class GastoController extends Controller
+class ListaPropietariosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class GastoController extends Controller
     public function index()
     {
         //
-        
     }
 
     /**
@@ -42,10 +41,10 @@ class GastoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(gastos $gastos)
+    public function show($id)
     {
         //
     }
@@ -53,10 +52,10 @@ class GastoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(gastos $gastos)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +64,10 @@ class GastoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\gastos  $gastos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, gastos $gastos)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +75,10 @@ class GastoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gastos $gastos)
+    public function destroy($id)
     {
         //
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\gastos;
+use App\Models\cuentasBancarias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreCuentaBancariaRequest;
 
-class GastoController extends Controller
+class CuentasBancariasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,8 @@ class GastoController extends Controller
     public function index()
     {
         //
-        
+        $cuentasBancarias = cuentasBancarias::all();
+        return view('cuentaBancaria/cuentaBancaria',['cuentasBancarias' => $cuentasBancarias]);
     }
 
     /**
@@ -26,6 +29,7 @@ class GastoController extends Controller
     public function create()
     {
         //
+        return view('cuentaBancaria/cuentasBancarias');
     }
 
     /**
@@ -34,18 +38,20 @@ class GastoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCuentaBancariaRequest $request)
     {
         //
+        cuentasBancarias::create($request->all());
+        return redirect('/cuentasBancarias');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function show(gastos $gastos)
+    public function show(cuentasBancarias $cuentasBancarias)
     {
         //
     }
@@ -53,10 +59,10 @@ class GastoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function edit(gastos $gastos)
+    public function edit(cuentasBancarias $cuentasBancarias)
     {
         //
     }
@@ -65,10 +71,10 @@ class GastoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\gastos  $gastos
+     * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, gastos $gastos)
+    public function update(Request $request, cuentasBancarias $cuentasBancarias)
     {
         //
     }
@@ -76,10 +82,10 @@ class GastoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gastos $gastos)
+    public function destroy(cuentasBancarias $cuentasBancarias)
     {
         //
     }

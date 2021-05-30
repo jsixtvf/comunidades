@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingresos;
-use App\Http\Controllers\Controller;
+use App\Models\ingresos;
+use App\Models\cuentasBancarias;
+use App\Models\movimientos;
+use App\Models\Propietario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use  App\Http\Requests\ingreso;
 
 class IngresosController extends Controller
 {
@@ -15,7 +20,14 @@ class IngresosController extends Controller
      */
     public function index()
     {
-        //
+        /*
+        $ingresos = ingresos::all();
+        $total = ingresos::sum('cantidad');
+        return view('ingresos/ingresos',['ingresos' => $ingresos,'total' => $total]);
+        */
+        $ingresos = movimientos::where('concepto', '=', 'ingreso')->get();
+        //dd($ingresos);
+        return view('ingresos/ingresos', compact('ingresos'));
     }
 
     /**
@@ -24,8 +36,14 @@ class IngresosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        $cuentas = cuentasBancarias::all();
+        $propietarios = Propietario::all();
+        //dd($cuenta->cuenta);
+        $actual = Carbon::now();
+        $fecha = $actual -> format('d-m-Y');
+
+        return view('ingresos/ingreso',['cuentas' => $cuentas,'fecha' => $fecha,'propietarios' => $propietarios]);
     }
 
     /**
@@ -34,29 +52,32 @@ class IngresosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ingreso $request)
     {
         //
+        ingresos::create($request->all());
+        return redirect()->route('ingreso.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ingresos  $ingresos
+     * @param  \App\Models\ingresos  $ingresos
      * @return \Illuminate\Http\Response
      */
-    public function show(Ingresos $ingresos)
+    public function show(ingresos $ingresos)
     {
         //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ingresos  $ingresos
+     * @param  \App\Models\ingresos  $ingresos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ingresos $ingresos)
+    public function edit(ingresos $ingresos)
     {
         //
     }
@@ -65,10 +86,10 @@ class IngresosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ingresos  $ingresos
+     * @param  \App\Models\ingresos  $ingresos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ingresos $ingresos)
+    public function update(Request $request, ingresos $ingresos)
     {
         //
     }
@@ -76,10 +97,10 @@ class IngresosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ingresos  $ingresos
+     * @param  \App\Models\ingresos  $ingresos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingresos $ingresos)
+    public function destroy(ingresos $ingresos)
     {
         //
     }
