@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    
     /**
      * Register any application services.
      *
@@ -37,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
             ['href' => 'comunidades.index', 'name' => 'comunidades.create', 'text' => 'Comunidades'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.show', 'text' => 'Acciones'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.edit', 'text' => 'Personas'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.update', 'text' => 'Proveedores'],
+            ['href' => 'proveedores.pasarComunidad', 'name' => 'proveedores.pasarComunidad', 'text' => 'Proveedores'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.delete', 'text' => 'Inmuebles'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.restore', 'text' => 'Presupuestos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.eliminar', 'text' => 'Honorarios'],
@@ -48,11 +49,11 @@ class AppServiceProvider extends ServiceProvider
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Comunidad'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Contactos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Conceptos'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Convocatorias'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Cuentas bancarias'],
+            ['href' => 'juntas.index', 'name' => 'juntas.index', 'text' => 'Juntas'],
+            ['href' => 'cuentasBancarias.index', 'name' => 'cuentasBancarias.index', 'text' => 'Cuentas bancarias'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Cuotas'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Diario'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Distribuciones'],
+            ['href' => 'distribucion.index', 'name' => 'distribucion.index', 'text' => 'Distribuciones'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Documentos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Fondos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Foro'],
@@ -60,11 +61,12 @@ class AppServiceProvider extends ServiceProvider
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Incidencias'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Informes'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Liquidaciones'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Movimientos'],
+            ['href' => 'movimientos.index', 'name' => 'movimientos.index', 'text' => 'Movimientos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Obligaciones'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Posicion'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Presupuestos'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Propiedades'],
+            ['href' => 'proveedores.pasarComunidad', 'name' => 'proveedores.pasarComunidad', 'text' => 'Proveedores'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Remesas'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Lecturas de agua'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Saldos iniciales']
