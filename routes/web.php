@@ -20,7 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
 Route::middleware('auth')->get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'select'])->name('comunidades.select');
@@ -30,9 +29,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('gastos', GastosController::class);
+Route::resource('distribucion', 'DistribucionGastosController');
 
-Route::resource('distribucion', DistribucionGastosController::class);
+//Route::resource('distribucion', GastoController::class);
 
 Route::resource('cuentasBancarias', CuentasBancariasController::class);
 
@@ -42,7 +41,17 @@ Route::resource('movimientos', MovimientosController::class);
 
 Route::resource('ingresos', IngresosController::class);
 
-Route::resource('proveedores', ProveedorController::class)->parameters(['proveedores' => 'proveedor'])->names('proveedores');
+Route::resource('propietario','PropietarioController');
+
+Route::resource('listaPropietarios', 'ListaPropietariosController');
+
+Route::resource('listaMovimientos', 'ListaMovimientosController');
+
+Route::get('proveedores/index/{comunidad?}', [App\Http\Controllers\ProveedorController::class , 'pasarComunidad'])->name('proveedores.pasarComunidad');
+
+Route::resource('proveedores', ProveedorController::class, ['except' => ['index']])->parameters(['proveedores' => 'proveedor'])->names('proveedores');
+
+Route::resource('juntas', JuntaController::class)->parameters(['juntas' => 'junta'])->names('juntas');
 
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);

@@ -1,8 +1,8 @@
 <x-app-layout>
-
+    
     @include('partials.session-status')
 
-    @if( auth()->user()->comunidades->count() < auth()->user()->limitMaxFreeCommunities)
+    @if( $user->comunidades->count() < $user->MaxFreeCommunities)
     <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>
     @endif
 
@@ -27,8 +27,10 @@
                 <td>{{$comunidad->secretary}}</td>
                 <td>{{$comunidad->responsable}}</td>
                 <td class="flex border-0">
-                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.select', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
-                    <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
+                    @if (! Session::has('activeCommunity'))
+                        <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.select', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
+                    @endif
+                        <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
                 </td>
         </tr>
         </tbody>
@@ -41,4 +43,5 @@
     @include('partials.alert-notcreatedyet')
     @endif
 
+    {{-- $comunidades->links() --}}
 </x-app-layout>

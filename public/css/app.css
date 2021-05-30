@@ -33374,6 +33374,25 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+#sideTitle {
+  background-color: blueviolet;
+  width: -webkit-fill-available;
+  justify-content: center;
+  font-size: 1.5em;
+  text-decoration:none;
+  font-family: Verdana, sans-serif;
+}
+
+#positionNav {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+.bolder {
+  font-weight: bolder;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -195823,4 +195842,3 @@ select {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
-

@@ -18,20 +18,39 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         @livewireStyles
+        
+        <style>
+            #sideTitle {
+                background-color: blueviolet;
+                width: -webkit-fill-available;
+                justify-content: center;
+                font-size: 1.5em;
+                text-decoration:none;
+                font-family: Verdana, sans-serif;
+            }
+
+            #positionNav {
+                height: 100%;
+                width: 100%;
+            }
+            .bolder {
+                font-weight: bolder;
+            }
+        </style>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
- <body class="container-fluid">
+ <body class="container-fluid p-0">
     <x-jet-banner />
 
-    <div class="row">
+    <div class="row m-0" id="positionNav">
         <!-- component aside navbar -->
 
         <div class="col-12 col-sm-12 col-lg-2 p-0 bg-black collapse show" id="navbarToggleExternalContent">
 
-            <x-jet-nav-link href="{{ route('dashboard') }}" class="h-16 m-auto">
-                @lang('RandiFincas')
+            <x-jet-nav-link id="sideTitle" href="{{ route('dashboard') }}" class="h-16 m-auto">
+                RANDI<b class="bolder">FINCAS</b>
             </x-jet-nav-link>
 
             <div class="accordion px-0 border-0" id="accordionExample">
@@ -44,9 +63,11 @@
                     <div id="collapseOne" class="accordion-collapse bg-black collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             @forelse($navDarkLinks as $link)
+                            @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
                             <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                                 {{ __($link['text']) }}
                             </x-jet-responsive-nav-link>
+                            @endif
                             @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
                                 @forelse($navDarkCommunitiesLinks as $link2)
                                     <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
