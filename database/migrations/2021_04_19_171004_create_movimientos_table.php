@@ -11,13 +11,17 @@ class CreateMovimientosTable extends Migration {
      *
      * @return void
      */
-    public function up() {
+    public function up() 
+    {
+        // original Randion
         Schema::create('movimientos', function (Blueprint $table) {
-            $table->id();
+            
+            // parte de Randion
+            /*$table->id();
             $table->softDeletes();
             $table->timestamps();
             
-            $table->integer('n_op')->comment('Número de operación, a veces no esta disponible, depende de la cuenta y de loslistados');
+            $table->integer('n_op')->comment('Número de operación, a veces no esta disponible, depende de la cuenta y de los listados');
             $table->date('fecha');
             $table->date('fechavalor')->comment('Si no se conoce, se repite coincidiendo con el valor del campo fecha');
             $table->decimal('importe', 8, 2);
@@ -33,7 +37,27 @@ class CreateMovimientosTable extends Migration {
             $table->foreign('cuenta_id')->references('id')->on('cuentas')
                     ->onUpdate('cascade')->onDelete('cascade');
             
-            $table->index(['cuenta_id','n_op']);
+            $table->index(['cuenta_id','n_op']);*/
+            
+            // Integracion parte de rafa Maya para que cuadre la integración
+            
+            $table->id();
+            $table->date('fechaAlta');
+            $table->string('cuenta');
+            $table->string('grupo')->nullable();
+
+            $table->string('distribucion')->nullable();
+
+            
+
+       
+
+            $table->date('fechaValor');
+            $table->string('concepto');
+            $table->decimal('cantidad');
+            $table->longText('observaciones')->nullable();
+            $table->string('propiedad')->nullable();
+            $table->timestamps();
         });
     }
 

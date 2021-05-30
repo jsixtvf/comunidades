@@ -11,7 +11,9 @@ class CreateComunidadesTable extends Migration {
      *
      * @return void
      */
-    public function up() {
+    public function up() 
+    {
+        // original Randion
         Schema::create('comunidades', function (Blueprint $table) {
             
             $table->id();

@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMovInternosTable extends Migration
+class CreateLiquidacionesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
-        // original Randion
-        Schema::create('mov_internos', function (Blueprint $table) {
+    public function up()
+    {
+        // Integracion parte de Rafa Maya para que cuadre la integración
+        Schema::create('liquidaciones', function (Blueprint $table) {
             $table->id();
-            
-            
-            
+            $table->string('tipo');
+            $table->date('desde');
+            $table->date('hasta');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateMovInternosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mov_internos');
+        Schema::dropIfExists('liquidaciones');
     }
 }

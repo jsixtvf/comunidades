@@ -13,6 +13,7 @@ class CreatePropiedadesTable extends Migration
      */
     public function up()
     {
+        // original Randion
         Schema::create('propiedades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
