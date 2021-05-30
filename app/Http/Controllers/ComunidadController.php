@@ -99,7 +99,8 @@ class ComunidadController extends Controller {
 
         return view('comunidades.alt_show', [
             'comunidad' => $comunidad,
-            'btndisabled' => 'btndisabled',
+            'btnText1' => 'Show', 
+            'btnText2' => 'Back', 
             'btndisabled' => 'disabled'
         ]);
     }
@@ -143,7 +144,7 @@ class ComunidadController extends Controller {
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comunidad $comunidad) {
+    public function destroy(Comunidad $comunidad, Request $request) {
 
         $comunidad->activa = false;
 
@@ -154,6 +155,8 @@ class ComunidadController extends Controller {
         $comunidad::latest('updated_at')->first();
         
         Comunidad_User::where('comunidad_id', '=', $comunidad->id)->delete();
+        
+        $request->session()->put('activeCommunity', null);
         
         $comunidad->delete();
 
@@ -175,7 +178,7 @@ class ComunidadController extends Controller {
         
         
                 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, $color]);
+        return redirect()->route('dashboard', $comunidad)->with('status', [$this->msj, $color]);
     }
 
 }

@@ -24,4 +24,8 @@ class Comunidad_User extends Model {
     public function usuarios() {
         return $this->belongsToMany('user')->withTimestamps();
     }
+    
+    public function roles() {
+        return $this->belongsToMany('role')->withTimestamps();
+    }
 }
