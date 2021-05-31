@@ -65,6 +65,8 @@ class CuentasBancariasController extends Controller
     public function edit(cuentasBancarias $cuentasBancarias)
     {
         //
+        $cuentasBancarias = cuentasBancarias::findOrFail($id);
+        return view('cuentaBancaria/editarCuentasBancarias',compact('cuentasBancarias'));
     }
 
     /**
@@ -77,6 +79,16 @@ class CuentasBancariasController extends Controller
     public function update(Request $request, cuentasBancarias $cuentasBancarias)
     {
         //
+        $cuentasBancaria = cuentasBancarias::findOrFail($id);
+        $cuentasBancaria->nombre = $request->nombre;
+        $cuentasBancaria->pais = $request->pais;
+        $cuentasBancaria->dc = $request->dc;
+        $cuentasBancaria->cuenta = $request->cuenta;
+        $cuentasBancaria->bic = $request->bic;
+        //dd($cuentasBancaria);
+        $cuentasBancaria->save();
+
+        return redirect()->route('cuentasBancarias.index')->with('mensaje' ,'Has actualizo la cuenta satisfactoriamente');
     }
 
     /**
