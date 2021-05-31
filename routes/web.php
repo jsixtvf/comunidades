@@ -41,6 +41,14 @@ Route::resource('movimientos', MovimientosController::class);
 
 Route::resource('ingresos', IngresosController::class);
 
+Route::resource('propiedades', 'PropiedadController')->parameters(['propiedades' => 'propiedad']);
+
+Route::get('listar',function () {
+    $resultado= DB::select('select * from comunidades');
+    return 'Listado de comunidades';
+    
+});
+
 Route::resource('propietario','PropietarioController');
 
 Route::resource('listaPropietarios', 'ListaPropietariosController');
