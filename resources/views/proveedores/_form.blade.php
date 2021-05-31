@@ -1,5 +1,9 @@
 @csrf
 
+
+<x-jet-button>{{ __($btnText1) }}</x-jet-button>
+<x-jet-danger-button onclick="location.href ='{{ route('proveedores.pasarComunidad') }}'">{{ __($btnText2) }}</x-jet-danger-button>
+
 <x-jet-validation-errors></x-jet-validation-errors>
 
 
@@ -67,7 +71,7 @@
 
       <div class="form-group">
         <label for="apellido1">@lang('apellido1')</label>
-        <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="apellido1" placeholder=@lang('apellido1') value="{{ old('apellido1', $proveedor->apellido1) }}" required>
+        <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="apellido1" placeholder=@lang('apellido1') value="{{ old('apellido1', $proveedor->apellido1) }}">
         @if ($errors->has('apellido1'))
             <span class="error-message">{{ $errors->first('apellido1') }}</span>
         @endif
@@ -85,7 +89,7 @@
     <div class="col-4">
         <div class="form-group">
             <label for="email">@lang('email')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="text" name="email" min="1" placeholder=@lang('email') value="{{ old('email', $proveedor->email) }}">
+            <input class="form-control border-0 bg-light shadow-sm" type="email" name="email" min="1" placeholder=@lang('email') value="{{ old('email', $proveedor->email) }}">
         </div>
     </div>
 
@@ -93,8 +97,8 @@
 
    <div class="col-4">
         <div class="form-group">
-            <label for="email">@lang('telefono')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="text" name="telefono" min="1" placeholder=@lang('telefono') value="{{ old('telefono', $proveedor->telefono) }}">
+            <label for="telefono">@lang('telefono')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" name="telefono" min="1" placeholder=@lang('telefono') value="{{ old('telefono', $proveedor->telefono) }}" required>
         </div>
     </div>
 
@@ -160,6 +164,4 @@
         </div>
     </div>
 </div>
-<x-jet-button>{{ __($btnText1) }}</x-jet-button>
-<x-jet-danger-button onclick="location.href ='{{ route('proveedores.pasarComunidad') }}'">{{ __($btnText2) }}</x-jet-danger-button>
 <br><br>

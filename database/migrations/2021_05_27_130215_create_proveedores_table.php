@@ -35,7 +35,7 @@ class CreateProveedoresTable extends Migration {
             $table->string('apellido2')->nullable();
             $table->string('email')->unique();
             $table->bigInteger('telefono');
-            $table->string('calle');
+            $table->string('calle')->nullable();
             $table->smallInteger('portal')->nullable();
             $table->string('bloque', 2)->nullable();
             $table->string('escalera', 2)->nullable();
