@@ -24,9 +24,9 @@ class StoreCuentaBancariaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required | alpha',
-            'pais' => 'required | alpha | min:2 |max:2',
-            'dc' => 'required | numeric | min:2 | max:2',
+            'nombre' => 'required | string',
+            'pais' => 'required | alpha | size:2',
+            'dc' => 'required | digits:2',
             'cuenta' => 'required | min:24',
             'bic' => 'required | regex:([A-Z]+)'
         ];
