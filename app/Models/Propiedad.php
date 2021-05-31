@@ -13,6 +13,15 @@ class Propiedad extends Model {
 
     protected $table = "propiedades";
     protected $dates = ['deleted_at'];
+    
+    protected $fillable = [
+        "nombre",
+        "propietario",
+        "tipo",
+        "coeficiente",
+        "parte",
+        "observaciones"
+    ];
 
     public function comunidad() {
         return $this->belongsTo(Comunidad::class);
