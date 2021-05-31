@@ -28,11 +28,6 @@
                 text-decoration:none;
                 font-family: Verdana, sans-serif;
             }
-
-            #positionNav {
-                height: 100%;
-                width: 100%;
-            }
             .bolder {
                 font-weight: bolder;
             }
@@ -44,7 +39,7 @@
  <body class="container-fluid p-0">
     <x-jet-banner />
 
-    <div class="row m-0" id="positionNav">
+    <div class="row m-0 vh-100">
         <!-- component aside navbar -->
 
         <div class="col-12 col-sm-12 col-lg-2 p-0 bg-black collapse show" id="navbarToggleExternalContent">
