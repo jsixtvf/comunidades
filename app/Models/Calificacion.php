@@ -16,4 +16,8 @@ class Calificacion extends Model
     protected $fillable = [
         'calificacion'
     ];
+    
+    public function proveedores() {
+        return $this->hasMany(Proveedor::class, 'calificacion', 'id')->withTimestamps();
+    }
 }

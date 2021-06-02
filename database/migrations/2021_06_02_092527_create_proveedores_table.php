@@ -21,10 +21,10 @@ class CreateProveedoresTable extends Migration {
             // $table->tipo  enum , y en la vista
             $table->unsignedBigInteger('tipo');
             // $table->calificacion   enum pesimo mala normal buena excelente
-            $table->enum('calificacion', ['Pésima', 'Mala', 'Normal', 'Buena', 'Excelente']);
+            $table->unsignedBigInteger('calificacion');
 
             // $table->figura   enum fisica juridica
-            $table->enum('figura', ['Física', 'Jurídica']);
+            $table->unsignedBigInteger('figura');
 
             $table->string('nombre');
             $table->string('apellido1')->nullable();
@@ -47,6 +47,8 @@ class CreateProveedoresTable extends Migration {
             $table->softDeletes();
             
             $table->foreign('tipo')->references('id')->on('tipos')->onDelete('cascade');
+            $table->foreign('calificacion')->references('id')->on('calificaciones')->onDelete('cascade');
+            $table->foreign('figura')->references('id')->on('figuras')->onDelete('cascade');
         });
     }
 

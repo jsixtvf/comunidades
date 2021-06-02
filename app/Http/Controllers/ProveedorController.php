@@ -9,6 +9,8 @@ use App\Models\Proveedor;
 use App\Http\Requests\SaveProveedorRequest;
 use App\Models\Comunidad_Proveedor;
 use App\Models\Tipo;
+use App\Models\Calificacion;
+use App\Models\Figura;
 
 class ProveedorController extends Controller {
 
@@ -16,12 +18,20 @@ class ProveedorController extends Controller {
     private $msj = '';
     private $activeCommunity;
     private $tipos = Tipo::class;
+    private $calificaciones = Calificacion::class;
+    private $figuras = Figura::class;
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct() {
+        $this->tipos = Tipo::all();
+        $this->calificaciones = Calificacion::all();
+        $this->figuras = Figura::all();
+    }
     public function index() {
         
     }
@@ -38,11 +48,12 @@ class ProveedorController extends Controller {
           } */
         
         //$this->tipos = Tipo::all()->pluck('tipo', 'id');
-        $this->tipos = Tipo::all();
         
         return view('proveedores.create', [
             'proveedor' => new Proveedor,
-            'tipos' => $this->tipos
+            'tipos' => $this->tipos,
+            'calificaciones' => $this->calificaciones,
+            'figuras' => $this->figuras
             ]);
     }
 
@@ -92,11 +103,11 @@ class ProveedorController extends Controller {
      */
     public function edit(Proveedor $proveedor) {
         
-        $this->tipos = Tipo::all();
-        
         return view('proveedores.edit', [
             'proveedor' => $proveedor,
-            'tipos' => $this->tipos
+            'tipos' => $this->tipos,
+            'calificaciones' => $this->calificaciones,
+            'figuras' => $this->figuras
         ]);
     }
 

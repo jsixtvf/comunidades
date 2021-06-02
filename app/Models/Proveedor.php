@@ -45,4 +45,12 @@ class Proveedor extends Model {
     public function tipos() {
         return $this->belongsTo(Tipo::class, 'id', 'tipo')->withTimestamps();
     }
+    
+    public function calificaciones() {
+        return $this->belongsTo(Calificacion::class, 'id', 'calificacion')->withTimestamps();
+    }
+    
+    public function figuras() {
+        return $this->belongsTo(Figura::class, 'id', 'figura')->withTimestamps();
+    }
 }

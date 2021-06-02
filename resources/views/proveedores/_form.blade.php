@@ -32,20 +32,30 @@
     </select>
     
     <select class="form-select" aria-label="Default select example" name="calificacion">
-        <option selected>Calificacion</option>
-        <option value="Pésima">Pésima</a>
-        <option value="Mala">Mala</option>
-        <option value="Normal">Normal</option>
-        <option value="Buena">Buena</option>
-        <option value="Excelente">Excelente</option>
+        <option value="0">@lang('Calification')</option>
+        @forelse($calificaciones as $calificacion)
+        @if ( old('calificacion', $proveedor->id) == $calificacion->id )
+        <option value="{{ $calificacion->id }}" selected > {{ $calificacion->calificacion }} </option>
+        @else
+        <option value="{{ $calificacion->id }}"> {{ $calificacion->calificacion }} </option>
+        @endif
+        @empty
+        <p>vacio</p>
+        @endforelse
     </select>
-
+    
     <select class="form-select" aria-label="Default select example" name="figura">
-        <option selected>Figura</option>
-        <option value="Jurídica">Juridica</option>
-        <option value="Física">Fisica</option>
+        <option value="0">@lang('Figure')</option>
+        @forelse($figuras as $figura)
+        @if ( old('figura', $proveedor->id) == $figura->id )
+        <option value="{{ $figura->id }}" selected > {{ $figura->figura }} </option>
+        @else
+        <option value="{{ $figura->id }}"> {{ $figura->figura }} </option>
+        @endif
+        @empty
+        <p>vacio</p>
+        @endforelse
     </select>
-
 
     <div class="form-group">
         <label for="nombre">@lang('nombre')</label>
