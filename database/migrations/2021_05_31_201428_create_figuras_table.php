@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJunstasTable extends Migration
+class CreateFigurasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateJunstasTable extends Migration
      */
     public function up()
     {
-        // Integracion parte de Ricardo para que cuadre la integración
-        Schema::create('junstas', function (Blueprint $table) {
+        Schema::create('figuras', function (Blueprint $table) {
             $table->id();
+            $table->string('figura');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateJunstasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('junstas');
+        Schema::dropIfExists('figuras');
     }
 }

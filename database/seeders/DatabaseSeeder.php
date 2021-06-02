@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Comunidad;
 use App\Models\Comunidad_User;
 
+
 class DatabaseSeeder extends Seeder {
 
 /**
@@ -39,7 +40,9 @@ class DatabaseSeeder extends Seeder {
         ]);
         //Comunidad_User::factory(15)->create();
         //$this->call([ComunidadUserSeeder::class]);
-
+        $this->call(TipoSeeder::class);
+        $this->call(FiguraSeeder::class);
+        $this->call(CalificacionSeeder::class);
         $miscomunidades = Comunidad::all();
 
         //dd($miscomunidades);

@@ -41,5 +41,8 @@ class Proveedor extends Model {
     public function comunidades() {
         return $this->belongsToMany(Comunidad::class, 'comunidades_proveedores', 'proveedor_id', 'comunidad_id')->withTimestamps();
     }
-
+    
+    public function tipos() {
+        return $this->belongsTo(Tipo::class, 'id', 'tipo')->withTimestamps();
+    }
 }

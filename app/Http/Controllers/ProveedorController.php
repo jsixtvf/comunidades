@@ -8,16 +8,14 @@ use App\Models\Comunidad;
 use App\Models\Proveedor;
 use App\Http\Requests\SaveProveedorRequest;
 use App\Models\Comunidad_Proveedor;
+use App\Models\Tipo;
 
 class ProveedorController extends Controller {
 
     //
     private $msj = '';
-    private $comunidad_seleccionada;
-    private $tipos = ['Admin Publica','Telefonia','Agua','Antenas','Antiplaga','Ascensores',
-            'Comunidad','Desatascos','Electricidad','Electricista','Entidad Financiera','Fontaneria',
-            'Impermeabilizaciones','Jardineria','Juridico','Limpieza','Piscinas','Porteros automaticos','Puertas garajes',
-            'Rehabilitacion','Seguros'];
+    private $activeCommunity;
+    private $tipos = Tipo::class;
 
     /**
      * Display a listing of the resource.
@@ -38,7 +36,10 @@ class ProveedorController extends Controller {
         /* if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
           abort(401, 'You cannot see');
           } */
-
+        
+        //$this->tipos = Tipo::all()->pluck('tipo', 'id');
+        $this->tipos = Tipo::all();
+        
         return view('proveedores.create', [
             'proveedor' => new Proveedor,
             'tipos' => $this->tipos
@@ -54,24 +55,20 @@ class ProveedorController extends Controller {
     public function store(SaveProveedorRequest $request) {
 
         $this->msj = 'El proveedor fué creado con éxito';
-
-        //$request->replace(['selectTipo' => 'Desatascos']);
-        //dd($request->get('tipo')); 
+        
+        $comunidad = session()->get('activeCommunity');
 
         $new_proveedor = Proveedor::create($request->validated());
-        //$new_proveedor = Proveedor::orderBy('created_at', 'desc')->first();
-        //$user = auth()->user();
+        $new_proveedor = Proveedor::orderBy('created_at', 'desc')->first();
+        
         Comunidad_Proveedor::create([
-            'comunidad_id' => session()->get('comunidad_seleccionada'),
-            'proveedor_id' => $new_proveedor,
+            'comunidad_id' => $comunidad->id,
+            'proveedor_id' => $new_proveedor->id,
             'created_at' => $new_proveedor->created_at,
             'updated_at' => $new_proveedor->updated_at
         ]);
 
-        //  return redirect()->route('proveedores.index')->with('status', [$this->msj, 'alert-primary']);
-        return view('proveedores.index', [// llamamos al Modelo
-            'comunidad_seleccionada' => session()->get('comunidad_seleccionada')
-        ]);
+       return redirect()->route('proveedores.pasarComunidad', $comunidad)->with('status', [$this->msj, 'alert-primary']);
     }
 
     /**
@@ -94,9 +91,12 @@ class ProveedorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Proveedor $proveedor) {
-        //
+        
+        $this->tipos = Tipo::all();
+        
         return view('proveedores.edit', [
-            'proveedor' => $proveedor
+            'proveedor' => $proveedor,
+            'tipos' => $this->tipos
         ]);
     }
 
@@ -111,7 +111,7 @@ class ProveedorController extends Controller {
 
         $this->msj = 'El proveedor fué actualizado con éxito';
 
-        $proveedor->update();
+        $proveedor->update($request->validated());
 
         return redirect()->route('proveedores.show', $proveedor)->with('status', [$this->msj, 'alert-primary']);
     }
@@ -128,22 +128,22 @@ class ProveedorController extends Controller {
 
         $proveedor->delete();
 
-        return redirect()->route('proveedores.index', $proveedor)->with('status', [$this->msj, 'alert-danger']);
+        return redirect()->route('proveedores.pasarComunidad', $proveedor)->with('status', [$this->msj, 'alert-danger']);
     }
 
     public function select(Proveedor $proveedor) {
 
-        $this->msj = "Has el proveedor ";
+        $this->msj = "Has seleccionado el proveedor ";
 
         return $this->msj . $proveedor;
     }
 
     public function pasarComunidad(Comunidad $comunidad) {
 
-        session()->put('comunidad_seleccionada', $comunidad);
+        session()->put('activeCommunity', $comunidad);
 
         return view('proveedores.index', [// llamamos al Modelo
-            'comunidad_seleccionada' => session()->get('comunidad_seleccionada')
+            'activeCommunity' => session()->get('activeCommunity')
         ]);
     }
 

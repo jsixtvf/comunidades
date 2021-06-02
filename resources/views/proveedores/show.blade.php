@@ -9,7 +9,7 @@
     <div class="bg-white p-5 shadow rounded">
 
         <div class="col-12">
-            <a class="btn btn-primary" href="{{ route('proveedores.pasarComunidad') }}">@lang('Back')</a>
+            <a class="btn btn-primary" href="{{ route('proveedores.pasarComunidad', Session()->get('activeCommunity')) }}">@lang('Back')</a>
 
             @auth
             <div class="btn-group btn-group-sm">

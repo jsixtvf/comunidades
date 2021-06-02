@@ -19,11 +19,7 @@ class CreateProveedoresTable extends Migration {
             $table->string('cif', 9)->unique();
 
             // $table->tipo  enum , y en la vista
-            $table->enum('tipo', ['Admin. Pública', 'Telefonía', 'Agua', 'Antenas', 'Antiplaga',
-                'Ascensores', 'Comunidad', 'Desatascos', 'Electricidad', 'Electricista', 'Entidad Financiera', 'Fontanería',
-                'Impermeabilizaciones', 'Jardinería', 'Jurídico', 'Limpieza', 'Piscinas', 'Porteros automáticos',
-                'Puertas garajes', 'Rehabilitación', 'Seguros']);
-
+            $table->unsignedBigInteger('tipo');
             // $table->calificacion   enum pesimo mala normal buena excelente
             $table->enum('calificacion', ['Pésima', 'Mala', 'Normal', 'Buena', 'Excelente']);
 
@@ -49,6 +45,8 @@ class CreateProveedoresTable extends Migration {
             $table->string('iban');
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->foreign('tipo')->references('id')->on('tipos')->onDelete('cascade');
         });
     }
 

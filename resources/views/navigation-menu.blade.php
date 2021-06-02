@@ -60,6 +60,7 @@
                             <x-jet-dropdown-link class="bg-white" href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
+                            
                             @if (Session::has('activeCommunity'))
                                 <x-jet-dropdown-link class="bg-white" href="{{ route('comunidades.select', session()->get('activeCommunity')) }}">
                                     @lang("Salir de la comunidad")
