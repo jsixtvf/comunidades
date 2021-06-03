@@ -9,19 +9,31 @@ use App\Models\Proveedor;
 use App\Http\Requests\SaveProveedorRequest;
 use App\Models\Comunidad_Proveedor;
 use App\Models\Tipo;
+use App\Models\Calificacion;
+use App\Models\Figura;
 
 class ProveedorController extends Controller {
 
     //
     private $msj = '';
-    private $activeCommunity;
+    private $activeCommunity = null;
     private $tipos = Tipo::class;
+    private $calificaciones = Calificacion::class;
+    private $figuras = Figura::class;
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct() {
+        $this->tipos = Tipo::all();
+        $this->calificaciones = Calificacion::all();
+        $this->figuras = Figura::all();
+        $this->activeCommunity = session()->get('activeCommunity');
+    }
+    
     public function index() {
         
     }
@@ -38,11 +50,12 @@ class ProveedorController extends Controller {
           } */
         
         //$this->tipos = Tipo::all()->pluck('tipo', 'id');
-        $this->tipos = Tipo::all();
         
         return view('proveedores.create', [
             'proveedor' => new Proveedor,
-            'tipos' => $this->tipos
+            'tipos' => $this->tipos,
+            'calificaciones' => $this->calificaciones,
+            'figuras' => $this->figuras
             ]);
     }
 
@@ -56,19 +69,19 @@ class ProveedorController extends Controller {
 
         $this->msj = 'El proveedor fué creado con éxito';
         
-        $comunidad = session()->get('activeCommunity');
+        $this->activeCommunity = session()->get('activeCommunity');
 
         $new_proveedor = Proveedor::create($request->validated());
         $new_proveedor = Proveedor::orderBy('created_at', 'desc')->first();
         
         Comunidad_Proveedor::create([
-            'comunidad_id' => $comunidad->id,
+            'comunidad_id' => $this->activeCommunity->id,
             'proveedor_id' => $new_proveedor->id,
             'created_at' => $new_proveedor->created_at,
             'updated_at' => $new_proveedor->updated_at
         ]);
 
-       return redirect()->route('proveedores.pasarComunidad', $comunidad)->with('status', [$this->msj, 'alert-primary']);
+       return redirect()->route('proveedores.pasarComunidad', $this->activeCommunity)->with('status', [$this->msj, 'alert-primary']);
     }
 
     /**
@@ -92,11 +105,11 @@ class ProveedorController extends Controller {
      */
     public function edit(Proveedor $proveedor) {
         
-        $this->tipos = Tipo::all();
-        
         return view('proveedores.edit', [
             'proveedor' => $proveedor,
-            'tipos' => $this->tipos
+            'tipos' => $this->tipos,
+            'calificaciones' => $this->calificaciones,
+            'figuras' => $this->figuras
         ]);
     }
 
@@ -141,9 +154,11 @@ class ProveedorController extends Controller {
     public function pasarComunidad(Comunidad $comunidad) {
 
         session()->put('activeCommunity', $comunidad);
+        
+        $this->activeCommunity = session()->get('activeCommunity');
 
         return view('proveedores.index', [// llamamos al Modelo
-            'activeCommunity' => session()->get('activeCommunity')
+            'activeCommunity' => $this->activeCommunity
         ]);
     }
 

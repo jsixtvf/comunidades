@@ -17,6 +17,7 @@ class CreateCalificacionesTable extends Migration
             $table->id();
             $table->string('calificacion');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

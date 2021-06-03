@@ -20,4 +20,10 @@ class Tipo extends Model
     public function proveedores() {
         return $this->hasMany(Proveedor::class, 'tipo', 'id')->withTimestamps();
     }
+
+  /*  public function tipo(){
+        return  $nombre_tipo = Tipo::findOrFail($id, ['tipo']);
+    }*/
+
+
 }

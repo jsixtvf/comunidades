@@ -17,6 +17,7 @@ class CreateFigurasTable extends Migration
             $table->id();
             $table->string('figura');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,27 +1,7 @@
 <x-app-layout>
 
-    @if(session('status'))
-    <div class="alert {{ session('status')[1] }} alert-dismissible fade show" role="alert">
-        {{ session('status')[0] }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
 
     <x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New Provider')</x-jet-button>
-
-
-
-    <!--  con button no funciona no coge href y usamos la etiqueta a
-
-     <div class="col-12 col-sm-10 col-lg-6 mx-auto">
-    <button class="btn btn-primary btn-lg btn-block"> @lang('Delete')</button>
-    </div>
-
-    {{ gettype($activeCommunity) }}
-    {{$activeCommunity->proveedor}}
-    -->
 
     @if ($activeCommunity->proveedor->count() > 0)
     <table class="table table-fluid">
@@ -37,6 +17,7 @@
                 <th class="col-span-2">@lang('Actions')</th>
             </tr>
         </thead>
+
         @forelse($activeCommunity->proveedor as $proveedor)
         <tbody>
 
@@ -47,10 +28,8 @@
                 <td>{{$proveedor->telefono}}</td>
                 <td>{{$proveedor->tipo}}</td>
                 <td>{{$proveedor->calificacion}}</td>
-                
-                
-                <td>
-                    <x-jet-button onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
+                <td class="flex border-0">
+                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
                     <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>
                 </td>
             </tr>
@@ -64,4 +43,3 @@
     <h1>@lang('No hay proveedores para esta comunidad todavía')</h1>
     @endif
 </x-app-layout>
-
