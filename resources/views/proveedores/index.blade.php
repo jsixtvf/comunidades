@@ -1,27 +1,9 @@
 <x-app-layout>
+    
+    @include('partials.session-status')
 
-    @if(session('status'))
-    <div class="alert {{ session('status')[1] }} alert-dismissible fade show" role="alert">
-        {{ session('status')[0] }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
 
     <x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New Provider')</x-jet-button>
-
-
-
-    <!--  con button no funciona no coge href y usamos la etiqueta a
-
-     <div class="col-12 col-sm-10 col-lg-6 mx-auto">
-    <button class="btn btn-primary btn-lg btn-block"> @lang('Delete')</button>
-    </div>
-
-    {{ gettype($activeCommunity) }}
-    {{$activeCommunity->proveedor}}
-    -->
 
     @if ($activeCommunity->proveedor->count() > 0)
     <table class="table table-fluid">
