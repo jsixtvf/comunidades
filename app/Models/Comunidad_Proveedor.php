@@ -8,7 +8,7 @@ use \Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comunidad_Proveedor extends Model
 {
-	use HasFactory;
+    use HasFactory;
     use SoftDeletes;
 	protected $table = 'comunidades_proveedores';
 	protected $dates = ['deleted_at'];

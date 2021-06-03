@@ -3,7 +3,6 @@
     <x-slot name="header">
         <h1 class="text-center">Listado de cuentas bancarias</h1>
     </x-slot>
-<h1 class="text-center">Listado de cuentas bancarias</h1>
 
 <a href="{{ url('cuentasBancarias/create') }}" class="btn btn-primary  mx-5 mb-4">Nuevo</a>
 

@@ -34,8 +34,8 @@ class CreateProveedoresTable extends Migration {
             $table->string('calle')->nullable();
             $table->integer('codigopais');
             $table->string('cp');
-            $table->string('pais', 25);
-            $table->string('provincia', 25);
+            $table->string('pais', 60);
+            $table->string('provincia', 60);
             $table->string('localidad');
             $table->string('iban');
             $table->timestamps();
