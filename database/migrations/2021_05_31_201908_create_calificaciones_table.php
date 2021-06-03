@@ -15,7 +15,7 @@ class CreateCalificacionesTable extends Migration
     {
         Schema::create('calificaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('calificacion');
+            $table->string('nombreCalificacion');
             $table->timestamps();
             $table->softDeletes();
         });

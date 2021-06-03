@@ -21,10 +21,10 @@
     <select class="form-select" aria-label="Default select example" name="tipo">
         <option value="0">@lang('Type')</option>
         @forelse($tipos as $tipo)
-        @if ( old('tipo', $proveedor->id) == $tipo->id )
-        <option value="{{ $tipo->id }}" selected > {{ $tipo->tipo }} </option>
+        @if ( old('tipo', $proveedor->tipo) == $tipo->id )
+        <option value="{{ $tipo->id }}" selected > {{ $tipo->nombreTipo }} </option>
         @else
-        <option value="{{ $tipo->id }}"> {{ $tipo->tipo }} </option>
+        <option value="{{ $tipo->id }}"> {{ $tipo->nombreTipo }} </option>
         @endif
         @empty
         <p>vacio</p>
@@ -34,10 +34,10 @@
     <select class="form-select" aria-label="Default select example" name="calificacion">
         <option value="0">@lang('Calification')</option>
         @forelse($calificaciones as $calificacion)
-        @if ( old('calificacion', $proveedor->id) == $calificacion->id )
-        <option value="{{ $calificacion->id }}" selected > {{ $calificacion->calificacion }} </option>
+        @if ( old('calificacion', $proveedor->calificacion) == $calificacion->id )
+        <option value="{{ $calificacion->id }}" selected > {{ $calificacion->nombreCalificacion }} </option>
         @else
-        <option value="{{ $calificacion->id }}"> {{ $calificacion->calificacion }} </option>
+        <option value="{{ $calificacion->id }}"> {{ $calificacion->nombreCalificacion }} </option>
         @endif
         @empty
         <p>vacio</p>
@@ -47,10 +47,10 @@
     <select class="form-select" aria-label="Default select example" name="figura">
         <option value="0">@lang('Figure')</option>
         @forelse($figuras as $figura)
-        @if ( old('figura', $proveedor->id) == $figura->id )
-        <option value="{{ $figura->id }}" selected > {{ $figura->figura }} </option>
+        @if ( old('figura', $proveedor->figura) == $figura->id )
+        <option value="{{ $figura->id }}" selected > {{ $figura->nombreFigura }} </option>
         @else
-        <option value="{{ $figura->id }}"> {{ $figura->figura }} </option>
+        <option value="{{ $figura->id }}"> {{ $figura->nombreFigura }} </option>
         @endif
         @empty
         <p>vacio</p>

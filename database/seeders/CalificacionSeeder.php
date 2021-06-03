@@ -18,7 +18,7 @@ class CalificacionSeeder extends Seeder {
 
         foreach ($calificaciones as $calificacion) {
             Calificacion::create([
-                'calificacion' => $calificacion,
+                'nombreCalificacion' => $calificacion,
             ]);
         }
     }

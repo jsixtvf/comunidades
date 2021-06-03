@@ -14,10 +14,10 @@ class Calificacion extends Model
     protected $table = 'calificaciones';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'calificacion'
+        'nombreCalificacion'
     ];
     
     public function proveedores() {
-        return $this->hasMany(Proveedor::class, 'calificacion', 'id')->withTimestamps();
+        return $this->hasMany(Proveedor::class, 'nombreCalificacion', 'id')->withTimestamps();
     }
 }

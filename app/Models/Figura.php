@@ -14,6 +14,10 @@ class Figura extends Model
     protected $table = 'figuras';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'figura'
+        'nombre'
     ];
+    
+    public function proveedores() {
+        return $this->hasMany(Proveedor::class, 'nombre', 'id')->withTimestamps();
+    }
 }

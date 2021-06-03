@@ -27,15 +27,16 @@ class SaveProveedorRequest extends FormRequest {
 
             'fechalta' => 'required|date',
             'cif' => ['required', 'alpha_num', 'size:9', Rule::unique('proveedores')->ignore($this->route('proveedor'))],
-            'tipo' => ['required', 'exists:tipos,id'],
-            'calificacion' => 'required|exists:calificaciones,id',
-            'figura' => 'required|exists:figuras,id',
             'nombre' => 'required|string|max:35',
             'apellido1' => 'string|nullable',
             'apellido2' => 'string|nullable',
             'email' => ['required','email:rfc,filter',Rule::unique('proveedores')->ignore($this->route('proveedor'))],
             //integer
             'telefono' => 'required|string|max:30',
+            'tipo' => ['required', 'exists:tipos,id'],
+            'calificacion' => 'required|exists:calificaciones,id',
+            'figura' => 'required|exists:figuras,id',
+            
             'calle' => 'required|string|nullable',
             'portal' => 'integer|nullable',
             'bloque' => 'string|nullable',

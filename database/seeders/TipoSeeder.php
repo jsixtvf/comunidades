@@ -22,7 +22,7 @@ class TipoSeeder extends Seeder {
 
         foreach ($tipos as $tipo) {
             Tipo::create([
-                'tipo' => $tipo,
+                'nombreTipo' => $tipo,
             ]);
         }
     }

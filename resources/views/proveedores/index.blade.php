@@ -47,10 +47,8 @@
                 <td>{{$proveedor->telefono}}</td>
                 <td>{{$proveedor->tipo}}</td>
                 <td>{{$proveedor->calificacion}}</td>
-                
-                
-                <td>
-                    <x-jet-button onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
+                <td class="flex border-0">
+                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
                     <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>
                 </td>
             </tr>

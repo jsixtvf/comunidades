@@ -15,7 +15,7 @@ class CreateFigurasTable extends Migration
     {
         Schema::create('figuras', function (Blueprint $table) {
             $table->id();
-            $table->string('figura');
+            $table->string('nombreFigura');
             $table->timestamps();
             $table->softDeletes();
         });
