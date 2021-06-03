@@ -3,7 +3,9 @@
 @section('title','Distribucion de gastos')
 
 @section('content')
-<h1 class="text-center m-40">Lista distribucion de gastos</h1>
+    <x-slot name="header">
+        <h1 class="text-center">Listado de cuentas bancarias</h1>
+    </x-slot>
     
 <div class="position-relative">
 

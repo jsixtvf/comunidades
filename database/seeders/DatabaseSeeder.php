@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder {
         $this->call([RoleSeeder::class]);
         \App\Models\User::factory(15)->create();
         $this->call([ComunidadSeeder::class]);
+        
 
         Comunidad_User::create([
             'comunidad_id' => 1,
@@ -43,6 +44,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(TipoSeeder::class);
         $this->call(FiguraSeeder::class);
         $this->call(CalificacionSeeder::class);
+        $this->call([ProveedorSeeder::class]);
         $miscomunidades = Comunidad::all();
 
         //dd($miscomunidades);
