@@ -32,11 +32,6 @@ class CreateProveedoresTable extends Migration {
             $table->string('email')->unique();
             $table->bigInteger('telefono');
             $table->string('calle')->nullable();
-            $table->smallInteger('portal')->nullable();
-            $table->string('bloque', 2)->nullable();
-            $table->string('escalera', 2)->nullable();
-            $table->smallInteger('piso')->nullable();
-            $table->string('puerta', 4)->nullable();
             $table->integer('codigopais');
             $table->string('cp');
             $table->string('pais', 25);

@@ -65,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Posicion'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Presupuestos'],
             ['href' => 'propiedades.index', 'name' => 'propiedades.index', 'text' => 'Propiedades'],
+            ['href' => 'proveedores.pasarComunidad', 'name' => 'proveedores.pasarComunidad', 'text' => 'Proveedores'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Remesas'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Lecturas de agua'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Saldos iniciales']
