@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder {
         $this->call(FiguraSeeder::class);
         $this->call(CalificacionSeeder::class);
         $this->call([ProveedorSeeder::class]);
+        $this->call([ComunidadProveedorSeeder::class]);
+        
         $miscomunidades = Comunidad::all();
 
         //dd($miscomunidades);
