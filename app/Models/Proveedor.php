@@ -16,15 +16,15 @@ class Proveedor extends Model {
     protected $fillable = [
         'fechalta',
         'cif',
-        'tipo',
-        'calificacion',
-        'figura',
         'nombre',
         'apellido1',
         'apellido2',
         'email',
         'telefono',
         'calle',
+        'tipo',
+        'calificacion',
+        'figura',
         'portal',
         'bloque',
         'escalera',
@@ -44,5 +44,13 @@ class Proveedor extends Model {
     
     public function tipos() {
         return $this->belongsTo(Tipo::class, 'id', 'tipo')->withTimestamps();
+    }
+    
+    public function calificaciones() {
+        return $this->belongsTo(Calificacion::class, 'id', 'calificacion')->withTimestamps();
+    }
+    
+    public function figuras() {
+        return $this->belongsTo(Figura::class, 'id', 'figura')->withTimestamps();
     }
 }

@@ -14,11 +14,11 @@ class Tipo extends Model
     protected $table = 'tipos';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'tipo'
+        'nombreTipo'
     ];
     
     public function proveedores() {
-        return $this->hasMany(Proveedor::class, 'tipo', 'id')->withTimestamps();
+        return $this->hasMany(Proveedor::class, 'nombreTipo', 'id')->withTimestamps();
     }
 
   /*  public function tipo(){

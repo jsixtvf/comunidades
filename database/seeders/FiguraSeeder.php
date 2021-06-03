@@ -18,7 +18,7 @@ class FiguraSeeder extends Seeder {
 
         foreach ($figuras as $figura) {
             Figura::create([
-                'figura' => $figura,
+                'nombreFigura' => $figura,
             ]);
         }
     }

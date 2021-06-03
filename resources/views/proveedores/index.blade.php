@@ -1,4 +1,6 @@
 <x-app-layout>
+    
+    @include('partials.session-status')
 
 
     <x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New Provider')</x-jet-button>
