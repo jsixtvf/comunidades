@@ -18,6 +18,13 @@
                 <th>@lang('actions')</th>
             </tr>
         </thead>
+
+         @if(! session()->get('activeCommunity'))
+        @php $comunidades = $user->comunidades @endphp
+        @else
+        @php $comunidades = [session()->get('activeCommunity')] @endphp
+        @endif
+        
         @forelse($comunidades as $comunidad )
         <tbody>
             <tr>
