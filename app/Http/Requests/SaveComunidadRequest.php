@@ -18,6 +18,8 @@ class SaveComunidadRequest extends FormRequest
         // podemos acceder al usuario con $this->user()
         // podemos verificar que es administrador con
         // $this->user()->isAdmin()
+        
+        // aquí se controlan las peticiones, cómo se controlan roles laravel, jetstream
     }
 
     /**

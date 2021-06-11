@@ -38,7 +38,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="tipo">@lang('tipo')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->tipo }} </div>
+                            <div class="form-control border-0 bg-light shadow-sm"> {{ $nombreTipo(proveedor->tipo) }} </div>
                         </div>
                     </div>
                 </div>
@@ -46,13 +46,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="calificacion">@lang('calificacion')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->calificacion }} </div>
+                            <div class="form-control border-0 bg-light shadow-sm"> {{ nombreCalificacion($proveedor->calificacion) }} </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="figura">@lang('figura')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->figura }} </div>
+                            <div class="form-control border-0 bg-light shadow-sm"> {{ nombreFigura($proveedor->figura) }} </div>
                         </div>
                     </div>
                 </div>

@@ -21,12 +21,4 @@ class Tipo extends Model
         return $this->hasMany(Proveedor::class, 'nombreTipo', 'id')->withTimestamps();
     }
 
-    public function nombreTipo($id){
-         // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
-        //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
-        return $nombreTipo = Proveedor::join('tipos', 'tipos.id', '=', 'ti.id')
-               ->get(['tipos.nombreTipo']);
-    }
-
-
 }

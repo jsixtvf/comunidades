@@ -12,20 +12,20 @@
             <tr>
                 <th>@lang('cif')</th>
                 <th>@lang('denom')</th>
-                <th>@lang('president')</th>
-                <th>@lang('secretary')</th>
-                <th>@lang('responsable')</th>
+                <th>@lang('address')</th>
+                <th>@lang('city')</th>
+                <th>@lang('parts')</th>
                 <th>@lang('actions')</th>
             </tr>
         </thead>
-        @forelse($user->comunidades as $comunidad )
+        @forelse($comunidades as $comunidad )
         <tbody>
             <tr>
                 <td>{{$comunidad->cif}}</td>
                 <td>{{$comunidad->denom}}</td>
-                <td>{{$comunidad->president}}</td>
-                <td>{{$comunidad->secretary}}</td>
-                <td>{{$comunidad->responsable}}</td>
+                <td>{{$comunidad->direccion}}</td>
+                <td>{{$comunidad->localidad}}</td>
+                <td>{{$comunidad->partes}}</td>
                 <td class="flex border-0">
                     @if (! Session::has('activeCommunity'))
                         <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.select', $comunidad) }}'">{{ __('Select') }}</x-jet-button>

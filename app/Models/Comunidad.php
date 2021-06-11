@@ -43,11 +43,21 @@ class Comunidad extends Model {
     }
 
     public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
+        return $this->belongsToMany(User::class, 'comunidad_user','comunidad_id','user_id')->withTimestamps();
     }
     
     public function proveedor() {
         return $this->belongsToMany(Proveedor::class, 'comunidades_proveedores', 'comunidad_id', 'proveedor_id')->withTimestamps();
+    }
+
+    public function roles() {
+
+        return $this->belongsToMany(Role::class, 'comunidad_user', 'comunidad_id', 'role_id');
+       // return $this->belongsToMany(Comunidad_User::class, 'comunidad_user', 'comunidad_id', 'role_id')->withTimestamps();
+    }
+
+    public function nombreRole($id){
+        return $nombreTipo = Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $id)->get()->pluck('role')->last();
     }
 
 }
