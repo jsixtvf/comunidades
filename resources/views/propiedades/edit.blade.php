@@ -17,8 +17,8 @@
                     @method('PUT')
 
                     <div class="inline-flex">
-                        <x-jet-button class="mx-2">@lang('Edit')</x-jet-button>
-                        <x-jet-danger-button  onclick="location.href ='{{ route('propiedades.index') }}'"> @lang('Cancel')</x-jet-danger-button>
+                        <x-jet-danger-button class="mx-2" type="submit">@lang('Guardar')</x-jet-danger-button>
+                        <x-jet-button  onclick="location.href ='{{ route('propiedades.index') }}'"> @lang('Cancel')</x-jet-button>
                     </div>
 
                     <div class="row">
@@ -30,6 +30,37 @@
                             <div class="form-group">
                                 <strong>Propietario:</strong>
                                 <input type="text" name="propietario" value="{{ $propiedad->propietario }}" class="form-control" placeholder="Name">
+                            </div>
+                               <div class="form-group">
+                                <strong>Parte:</strong>
+                                <input type="text" name="parte" value="{{ $propiedad->parte }}" class="form-control" placeholder="Name">
+                            </div>
+                              <div class="form-group">
+                                <strong>Coeficiente:</strong>
+                                <input type="integer" name="coeficiente" value="{{ $propiedad->coeficiente }}" class="form-control" placeholder="Name">
+                            </div>
+                               <div class="form-group">
+                                <strong>Tipo:</strong>
+                               <select class="form-select" aria-label="Default select example" name="tipo">
+                                    <option value="0">@lang('Type')</option>
+
+                                    @forelse($tipos as $tipo)
+                                    @if ( old('tipo', $propiedad->tipo) == $tipo )
+
+                                    <option value="{{ $tipo }}" selected > {{ $tipo }} </option>
+                                    @else
+                                    <option value="{{ $tipo }}" > {{ $tipo }} </option>
+                                    @endif
+                                    @empty
+                                    <p>vacio</p>
+
+                                    @endforelse
+                                </select>
+                                </div>
+
+                             <div class="form-group">
+                                <strong>Observaciones:</strong>
+                                <input type="textarea" name="observaciones" value="{{ $propiedad->observaciones }}" class="form-control" placeholder="Name">
                             </div>
                         </div>
                     </div>

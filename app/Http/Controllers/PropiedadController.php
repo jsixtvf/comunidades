@@ -54,7 +54,12 @@ class PropiedadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Propiedad $propiedad) {
-        return view('propiedades.show', compact('propiedad'));
+
+    $tipos = ['local', 'piso','atico'];
+        return view('propiedades.show', [
+            'propiedad' => $propiedad,
+            'tipos' => $tipos
+        ]);
     }
 
     /**
@@ -64,7 +69,12 @@ class PropiedadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Propiedad $propiedad) {
-        return view('propiedades.edit', compact('propiedad'));
+        
+    $tipos = ['local', 'piso','atico'];
+        return view('propiedades.edit', [
+            'propiedad' => $propiedad,
+             'tipos' => $tipos
+        ]);
     }
 
     /**

@@ -1,6 +1,6 @@
 <x-app-layout>
     
-    
+    @include('partials.session-status')
 
     @if( $user->comunidades->count() < $user->MaxFreeCommunities)
     <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>

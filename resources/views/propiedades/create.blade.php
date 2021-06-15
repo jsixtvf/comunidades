@@ -2,16 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-10 col-lg-10 mx-auto">
-                <h1 class="display-4"> @lang('Propiedades') </h1>
-
-                <div class="inline-flex">
-                    <x-jet-button class="mx-2">@lang('Save')</x-jet-button>
-                    <x-jet-danger-button  onclick="location.href ='{{ route('propiedades.index') }}'"> @lang('Cancel')</x-jet-danger-button>
-                </div>
-
+                <h1 class="display-6"> @lang('Crear propiedad') </h1>
                 <x-jet-validation-errors></x-jet-validation-errors>
 
                 <form action="{{ route('propiedades.store') }}" method="POST">
+                    
+                    <div class="inline-flex">
+                    <button type="submit" class="btn btn-primary">@lang('Save')</button>
+                    <x-jet-danger-button  onclick="location.href ='{{ route('propiedades.index') }}'"> @lang('Cancel')</x-jet-danger-button>
+                    </div>
+                    <br>
+                    <br>
                     @csrf
                     <label for="nombre" class="form-label">Nombre</label>
                     <input required type="text" id="nombre" name="nombre" class="form-control" value="{{ old('nombre') }}"/>
@@ -43,7 +44,7 @@
                         {{ $message }}
                     </div>
                     @enderror
-
+                    <br>
                     <label for="coeficiente" class="form-label">Coeficiente</label>
                     <input required type="integer" id="coeficiente" name="coeficiente" class="form-control"  value="{{ old('coeficiente') }}"/>
 
@@ -65,7 +66,6 @@
                     <label for="observacion" class="form-label">Observaciones</label>
                     <input type="text" id="observacion" name="observacion" class="form-control"  value="{{ old('observacion') }}"/>
 
-                    <button type="submit" class="btn btn-primary">Crear Propiedad</button>
                 </form>
             </div>
         </div>

@@ -17,7 +17,7 @@
             <td>
                 <form action="{{ route('propiedades.destroy',$propiedad->id) }}" method="POST">
 
-                    <a class="btn btn-primary" href="{{ route('propiedades.edit',$propiedad->id) }}">Editar</a>
+                    <a class="btn btn-primary" href="{{ route('propiedades.show',$propiedad->id) }}">Mostrar</a>
 
                     @csrf
                     @method('DELETE')

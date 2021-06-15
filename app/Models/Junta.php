@@ -12,4 +12,27 @@ class Junta extends Model
     use SoftDeletes;
     
     protected $table = 'juntas';
+    protected $table = 'juntas';
+    protected $fillable = [
+        'denom_convocatoria',
+        'tipo',
+        'user_id',
+        'comunidad_id',
+        'fecha_primera',
+        'hora_primera',
+        'fecha_segunda',
+        'hora_segunda',
+        'orden_dia'
+    ];
+
+    public function comunidad() {
+        return $this->belongsTo(Comunidad::class);
+    }
+
+
 }
+
+
+
+
+

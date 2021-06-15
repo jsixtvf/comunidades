@@ -60,4 +60,18 @@ class Comunidad extends Model {
         return $nombreTipo = Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $id)->get()->pluck('role')->last();
     }
 
+    public function paises() {
+        return $this->belongsTo(Pais::class, 'id', 'pais')->withTimestamps();
+    }
+
+    public function nombrePais($id){
+        // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
+        //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
+        return $nombrePais = Comunidad::join('paises', 'comunidades.pais', '=', 'paises.id')->where('comunidades.id', '=', $id)->get()->pluck('nombrePais')->last();
+    }
+
+    public function juntas() {
+        return $this->hasMany(Junta::class);
+    }
+
 }
