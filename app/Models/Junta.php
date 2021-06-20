@@ -12,7 +12,6 @@ class Junta extends Model
     use SoftDeletes;
     
     protected $table = 'juntas';
-    protected $table = 'juntas';
     protected $fillable = [
         'denom_convocatoria',
         'tipo',

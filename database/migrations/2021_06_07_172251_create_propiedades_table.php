@@ -43,25 +43,23 @@ class CreatePropiedadesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('comunidades_id')->nullable();
+
             $table->string('nombre');
-            $table->string('propietario');
-            $table->unsignedBigInteger('users_id')->nullable();  // Solo consideramos un propietario por propiedad
-            
+          //  $table->unsignedBigInteger('propietario');
             $table->string('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
             $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
 
           // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
             $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+            
             $table->string('observaciones')->nullable();
             
-
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->unsignedBigInteger('comunidad_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();  // Solo consideramos un propietario por propiedad
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('comunidad_id')->references('id')->on('comunidades')->onDelete('cascade');
             
-            $table->foreign('comunidades_id')->references('id')->on('comunidades')
-                    ->onDelete('cascade');
-            
-            $table->index(['comunidades_id','parte']);
+            $table->index(['comunidad_id','parte']);
         });
     }
 

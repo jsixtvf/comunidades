@@ -39,6 +39,14 @@ class Propietario extends Model
         return $this->BelongsTo(ingresos::class);
     }
 
+    public function propiedades() {
+        return $this->hasMany(Propiedad::class);
+    }
+
+    public function comunidad() {
+        return $this->belongsTo(Comunidad::class);
+    }
+
 
 }
 

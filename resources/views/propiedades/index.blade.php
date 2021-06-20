@@ -1,7 +1,9 @@
 <x-app-layout>
+@if($usuario->role() == 2)
     <div class="pull-right">
         <a class="btn btn-success" href="{{ route('propiedades.create') }}">Crear propiedad</a>
     </div>
+@endif
     <table class="table table-bordered">
         <tr>
             <th>Id</th>
@@ -13,7 +15,7 @@
         <tr>
             <td>{{ $propiedad->id }}</td>
             <td>{{ $propiedad->nombre }}</td>
-            <td>{{ $propiedad->propietario }}</td>
+            <td>{{ $propiedad->nombreUser($propiedad->user_id) }}</td>
             <td>
                 <form action="{{ route('propiedades.destroy',$propiedad->id) }}" method="POST">
 
@@ -22,7 +24,10 @@
                     @csrf
                     @method('DELETE')
 
+                    @if($usuario->role() == 2)
                     <button type="submit" class="btn btn-danger">Borrar</button>
+                    @endif
+                    
                 </form>
             </td>
         </tr>

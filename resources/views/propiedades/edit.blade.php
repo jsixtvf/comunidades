@@ -5,14 +5,14 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            <h2>Edit Product</h2>
+                            <h2>Edit Propiedad</h2>
                         </div>
 
                         <x-jet-validation-errors></x-jet-validation-errors>
                     </div>
                 </div>
 
-                <form action="{{ route('propiedades.update',$propiedad->id) }}" method="POST">
+                <form action="{{ route('propiedades.update',$propiedad) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -29,7 +29,22 @@
                             </div>
                             <div class="form-group">
                                 <strong>Propietario:</strong>
-                                <input type="text" name="propietario" value="{{ $propiedad->propietario }}" class="form-control" placeholder="Name">
+<!--                                 <input type="text" name="propietario" value="{{ $propiedad->propietario }}" class="form-control" placeholder="Name">
+ -->                             <select class="form-select" aria-label="Default select example" name="propietario_id">
+
+                                    <option value="0">@lang('Selecciona propietario')</option>
+                                    @forelse($propietarios as $propietario)
+                                    @if ( old('propietario_id', $propiedad->propietario_id) == $propietario->id )
+                                    <option value="{{ $propietario->id }}" selected > {{ $propietario->Nombre }} {{ $propietario->Apellido1 }}, {{ $propietario->DNI }} </option>
+                                    @else
+                                    <option value="{{ $propietario->id }}"> {{ $propietario->Nombre }} {{ $propietario->Apellido1 }}, {{ $propietario->DNI }} </option>
+                                    @endif
+                                    @empty
+                                    <p>vacio</p>
+                                    @endforelse
+
+                                </select>
+
                             </div>
                                <div class="form-group">
                                 <strong>Parte:</strong>

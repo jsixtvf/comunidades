@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidad;
 use App\Models\Propiedad;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PropiedadRequest;
 use App\Http\Controllers\Controller;
@@ -15,15 +17,36 @@ class PropiedadController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $propiedades = Propiedad::latest()->paginate(5);
+     private $usuarios = User::class;
+     private $comunidades = Comunidad::class;
 
+
+     public function __construct() {
+
+        $this->usuarios = User::all();
+        //$this->comunidades = Comunidad::all();
+        $this->activeCommunity = session()->get('activeCommunity');
+       
+    }
+
+    public function index() {
+
+        $propiedades = Propiedad::latest()->paginate(5);
+        $usuario = auth()->user();
         return view('propiedades.index', compact('propiedades'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5);
+                        ->with('i', (request()->input('page', 1) - 1) * 5)->with('usuario',$usuario);
     }
 
     public function create() {
-        return view("propiedades.create");
+
+        
+        return view("propiedades.create", [
+            'propiedad' => new Propiedad,
+            'usuarios' => session()->get('activeCommunity')->usuarios
+
+            //'comunidades' => $this->comunidades
+        ] );
+         
     }
 
     /**
@@ -32,16 +55,18 @@ class PropiedadController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(PropiedadRequest $request) {
 
-        DB::table('propiedades')->insert([
+        Propiedad::create($request->validated());
+
+      /*  DB::table('propiedades')->insert([
             'nombre' => $request->nombre,
-            'propietario' => $request->propietario,
+            'propietario_id' => $request->propietario,
             'tipo' => $request->tipo,
             'coeficiente' => $request->coeficiente,
             'parte' => $request->parte,
             'observaciones' => $request->observaciones,
-        ]);
+        ]);*/
 
         return redirect()->route('propiedades.index')
                         ->with('success', 'Propiedad creada');
@@ -73,7 +98,8 @@ class PropiedadController extends Controller {
     $tipos = ['local', 'piso','atico'];
         return view('propiedades.edit', [
             'propiedad' => $propiedad,
-             'tipos' => $tipos
+            'tipos' => $tipos,
+            'usuarios' => $this->usuarios
         ]);
     }
 
@@ -84,13 +110,19 @@ class PropiedadController extends Controller {
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Propiedad $propiedad) {
-        $request->validate([
-            'nombre' => 'required',
-            'propietario' => 'required',
-        ]);
+    public function update(PropiedadRequest $request, Propiedad $propiedad) {
 
-        $propiedad->update($request->all());
+        /*  $request->validate([
+            'nombre' => 'required',
+            'propietario_id' => 'required',
+            'tipo' => ['required', 'in:local, piso, atico'],
+            'coeficiente' => ['required'],
+            'parte' => ['required'],
+            'observacion' => ['max:100']
+        ]);
+        */
+
+        $propiedad->update($request->validated()); //$request->all()
 
         return redirect()->route('propiedades.index')
                         ->with('success', 'Propiedad actualizada');
@@ -103,9 +135,11 @@ class PropiedadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Propiedad $propiedad) {
+
         $propiedad->delete();
 
         return redirect()->route('propiedades.index')
                         ->with('success', 'Propiedad borrada');
     }
+      
 }

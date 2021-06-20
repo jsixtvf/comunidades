@@ -12,6 +12,9 @@ use App\Models\Comunidad_User;
 
 class DatabaseSeeder extends Seeder {
 
+         
+
+
 /**
  * Seed the application's database.
  *
@@ -25,6 +28,19 @@ class DatabaseSeeder extends Seeder {
             'email_verified_at' => now(),
             'password' => Hash::make('secretos'),
             'remember_token' => Str::random(10),
+            'pais' => 'España',
+            'provincia' => 'Illes Balears',
+            'localidad' => 'Palma'
+
+            /* 'dni' => $this->faker->unique()->dni(), 
+            'telefono' => $this->faker->randomNumber(9, true), 
+            'calle' => $this->faker->streetName(),
+            'portal' => $this->faker->buildingNumber(),
+            'bloque' => $this->faker->numberBetween(1, 10),
+            'escalera' => $this->faker->numberBetween(1, 10),
+            'piso' => $this->faker->numberBetween(1, 30),
+            'puerta' => $this->faker->numberBetween(1, 1000),
+            'cp' => $this->faker->randomNumber(5, true), */
         ]);
 
         $this->call([RoleSeeder::class]);

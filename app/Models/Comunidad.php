@@ -42,6 +42,10 @@ class Comunidad extends Model {
         return $this->hasMany(Comunidad_User::class);
     }
 
+     public function propietarios() {
+        return $this->hasMany(Propietario::class);
+    }
+
     public function usuarios() {
         return $this->belongsToMany(User::class, 'comunidad_user','comunidad_id','user_id')->withTimestamps();
     }

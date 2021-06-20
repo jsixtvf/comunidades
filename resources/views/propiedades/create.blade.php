@@ -23,14 +23,37 @@
                     </div>
                     @enderror
 
-                    <label for="propietario" class="form-label">Propietario</label>
-                    <input required type="text" id="propietario" name="propietario" class="form-control"  value="{{ old('propietario') }}"/>
 
-                    @error('propietario')
+                    <label for="usuario" class="form-label">Usuario</label>
+<!--                     <input required type="text" id="usuario" name="usuario" class="form-control"  value="{{ old('usuario') }}"/>
+ -->                    <select class="form-select" aria-label="Default select example" name="usuario">
+
+                        <option value="0">@lang('Selecciona usuario')</option>
+
+                            @forelse($usuarios as $usuario)
+                                    @if($usuario->role() == 3)
+                                    <option value="{{ $usuario->id }}"> {{ $usuario->name }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
+                                    @endif
+                            @empty
+                            <p>vacio</p>
+                            @endforelse
+
+                        </select>
+                        @error('usuario')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
+
+                    <label for="comunidad" class="form-label">Comunidad</label>
+                    <div required type="text" id="comunidad_activa" name="comunidad_activa" class="form-control"  value="{{ session()->get('activeCommunity')->id }}">{{ session()->get('activeCommunity')->denom }} </div>
+                    @error('comunidad_activa')
                     <div class="alert alert-danger mb-2" role="alert">
                         {{ $message }}
                     </div>
                     @enderror
+
 
                     <label for="tipo" class="form-label">Tipo de propiedad</label>
                     <select required class="form-select form-select-sm" id="tipo" name="tipo"   value="{{ old('tipo') }}">

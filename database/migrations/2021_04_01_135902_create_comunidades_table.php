@@ -23,9 +23,9 @@ class CreateComunidadesTable extends Migration {
             $table->boolean('activa')->default(true);
             $table->boolean('gratuita')->default(true);
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
-            $table->string('denom', 35);
+            $table->string('denom', 40);
             $table->string('direccion', 40);
-            $table->string('localidad', 35)->nullable();
+            $table->string('localidad', 40)->nullable();
             $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
             $table->string('pais')->default('ES');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PropietariosRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class PropietariosRequest extends FormRequest
     {
         return [
         "Nombre" => ["required", "max:30"],
+        "Tratamiento" => ["required", "in:Sr,Sra"]
         "Apellido1" => ["required", "max:30"],
         "Apellido2" => ["required", "max:30"],
         "DNI" => ["required", "max:9"],
@@ -40,7 +41,7 @@ class PropietariosRequest extends FormRequest
         "CP" => ["required", "max:5"],
         "Pais" => ["required", "max:20"],
         "Provincia" => ["required", "max:20"],
-        "Localidad" => ["required", "max:20"],
+        "Localidad" => ["required", "max:20"]
         ];
     }
 }

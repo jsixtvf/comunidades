@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Propietarios</title>
+    <title>Usuarios</title>
     
 </head>
 <body>
@@ -14,7 +14,7 @@
             <div class="col-4"></div>
             <div class="col-4">
                 <div class="mb-3 mt-5">
-                    <h2>Propietarios</h2>
+                    <h2>Usuarios</h2>
                 </div>
                
                 @if ($errors->any())
@@ -23,7 +23,7 @@
                     </div>
                 @endif
                 
-                <form class="bg-white shadow rounded py-3 px-4" method="POST" action="{{ route('propietario.store') }}">
+                <form class="bg-white shadow rounded py-3 px-4" method="POST" action="{{ route('usuarios.store') }}">
                 @csrf
                   
                     <label for="Tratamiento" class="form-label">"Tratamiento"</label>
@@ -51,6 +51,14 @@
                     <label for="Apellido2" class="form-label">"Apellido2"</label>
                     <input required type="text" id="Apellido2" name="Apellido2" class="form-control" value="{{ old('Apellido2') }}"/>
                     @error('Apellido2')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                     <label for="password" class="form-label">"Contraseña"</label>
+                    <input required type="password" id="password" name="password" class="form-control" value="Paco"/>
+                    @error('password')
                         <div class="alert alert-danger mb-2" role="alert">
                             {{ $message }}
                         </div>

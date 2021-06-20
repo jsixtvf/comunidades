@@ -20,11 +20,25 @@ class Propiedad extends Model {
         "tipo",
         "coeficiente",
         "parte",
-        "observaciones"
+        "observaciones",
+        "comunidad_activa"
+
     ];
 
     public function comunidad() {
         return $this->belongsTo(Comunidad::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function nombreUser($id){
+        $consulta = Propiedad::join('users', 'propiedades.user_id', '=', 'users.id')->where('users.id', '=', $id);
+        $nombreUser = $consulta->pluck('users.name')->last();
+        $apellidoUser = $consulta->pluck('users.apellido1')->last();
+        $nombreApellidoUser = $nombreUser." ".$apellidoUser;
+        return $nombreApellidoUser;
     }
 
 }

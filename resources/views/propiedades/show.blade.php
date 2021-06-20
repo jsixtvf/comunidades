@@ -11,11 +11,14 @@
                         <x-jet-validation-errors></x-jet-validation-errors>
                     </div>
                 </div>
+
+                @if($usuario->role() == 2)
                     <div class="inline-flex">
-                        <x-jet-danger-button onclick="location.href='{{ route('propiedades.edit',$propiedad->id) }}'">@lang('Edit')</x-jet-danger-button>
+                        <x-jet-danger-button onclick="location.href='{{ route('propiedades.edit',$propiedad) }}'">@lang('Edit')</x-jet-danger-button>
                     @csrf
                     @method('PUT')
                     </div>
+                @endif
                     <div class="inline-flex">
                         <x-jet-button  onclick="location.href ='{{ route('propiedades.index') }}'"> @lang('Cancel')</x-jet-button>
                     </div>
@@ -28,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <strong>Propietario:</strong>
-                                <div type="text" name="propietario" class="form-control" >{{ $propiedad->propietario }}</div>
+                                <div type="text" name="propietario" class="form-control" >{{ $propiedad->nombreUser($propiedad->user_id) }}</div>
                             </div>
                                <div class="form-group">
                                 <strong>Parte:</strong>

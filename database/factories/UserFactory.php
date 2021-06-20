@@ -30,6 +30,36 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'dni' => $this->faker->unique()->dni(), 
+            'telefono' => $this->faker->randomNumber(9, true), //$this->faker->phoneNumber,
+            'calle' => $this->faker->streetName(),
+            'portal' => $this->faker->buildingNumber(),
+            'bloque' => $this->faker->numberBetween(1, 10),
+            'escalera' => $this->faker->numberBetween(1, 10),
+            'piso' => $this->faker->numberBetween(1, 30),
+            'puerta' => $this->faker->numberBetween(1, 1000),
+            'cp' => '07' . $this->faker->randomNumber(3, true),
+            'pais' => $this->faker->country(),
+            'provincia' => $this->faker->community(),
+            'localidad' => $this->faker->asciify()
+            
+            
+            /*
+
+            $gender = $this->$faker->randomElement(['male', 'female']),
+            'tratamiento' => $this->faker->title($gender), //($gender = null|'male'|'female')
+
+            'first_name' => function (array $user) {
+                return $faker->firstName($user['gender']);
+                },
+         
+            'name' => $this->faker->firstName($gender),
+            'apellido1' => $this->faker->lastName,
+              
+            */
+
+            
+        
         ];
     }
 
