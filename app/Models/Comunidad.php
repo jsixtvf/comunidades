@@ -42,9 +42,9 @@ class Comunidad extends Model {
         return $this->hasMany(Comunidad_User::class);
     }
 
-     public function propietarios() {
+    /* public function propietarios() {
         return $this->hasMany(Propietario::class);
-    }
+    }*/
 
     public function usuarios() {
         return $this->belongsToMany(User::class, 'comunidad_user','comunidad_id','user_id')->withTimestamps();
@@ -54,14 +54,14 @@ class Comunidad extends Model {
         return $this->belongsToMany(Proveedor::class, 'comunidades_proveedores', 'comunidad_id', 'proveedor_id')->withTimestamps();
     }
 
-    public function roles() {
+  /*  public function roles() {
 
         return $this->belongsToMany(Role::class, 'comunidad_user', 'comunidad_id', 'role_id');
-       // return $this->belongsToMany(Comunidad_User::class, 'comunidad_user', 'comunidad_id', 'role_id')->withTimestamps();
-    }
+        return $this->belongsToMany(Comunidad_User::class, 'comunidad_user', 'comunidad_id', 'role_id')->withTimestamps();
+    }*/
 
     public function nombreRole($id){
-        return $nombreTipo = Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $id)->get()->pluck('role')->last();
+        return $nombreTipo = Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $id)->where('comunidad_user.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
     }
 
     public function paises() {

@@ -12,7 +12,7 @@
                     </div>
                 </div>
 
-                @if($usuario->role() == 2)
+                @if($usuario->role(auth()->user()->id) == 2)
                     <div class="inline-flex">
                         <x-jet-danger-button onclick="location.href='{{ route('propiedades.edit',$propiedad) }}'">@lang('Edit')</x-jet-danger-button>
                     @csrf

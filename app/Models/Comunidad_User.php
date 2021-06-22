@@ -14,7 +14,9 @@ class Comunidad_User extends Model {
     protected $fillable = [
         'comunidad_id',
         'user_id',
-        'role_id'
+        'role_id',
+        'created_at',
+        'updated_at'
     ];
     
     public function comunidades() {

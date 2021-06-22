@@ -30,7 +30,7 @@ class CreateComunidadUsersTable extends Migration {
                     ->onDelete('cascade');
             
             $table->index(['comunidad_id', 'user_id']);
-            $table->unique(['comunidad_id', 'user_id']);
+            $table->unique(['comunidad_id', 'user_id']); 
 
             $table->timestamps();
             $table->softDeletes();

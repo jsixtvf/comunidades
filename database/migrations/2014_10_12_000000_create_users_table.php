@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->text('profile_photo_path')->nullable();
             //$table->integer('limitMaxFreeCommunities')->default(2);
             $table->enum("tratamiento", ["Sr", "Sra"])->nullable();

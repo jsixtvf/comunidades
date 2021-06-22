@@ -31,7 +31,7 @@
                         <option value="0">@lang('Selecciona usuario')</option>
 
                             @forelse($usuarios as $usuario)
-                                    @if($usuario->role() == 3)
+                                    @if($usuario->role(auth()->user()->id) == 3)
                                     <option value="{{ $usuario->id }}"> {{ $usuario->name }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
                                     @endif
                             @empty

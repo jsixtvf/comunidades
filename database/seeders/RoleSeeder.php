@@ -17,17 +17,17 @@ class RoleSeeder extends Seeder {
 
         Role::create([
             'role' => 'super',
-            'descripcion' => 'Super',
+            'descripcion' => 'Superusuario de la aplicación',
         ]);
         
         Role::create([
             'role' => 'admin',
-            'descripcion' => 'Admin',
+            'descripcion' => 'Administrador de una comunidad',
         ]);
         
         Role::create([
             'role' => 'guest',
-            'descripcion' => 'guest',
+            'descripcion' => 'Propietario de una comunidad',
         ]);
     }
 

@@ -1,4 +1,8 @@
 
+
+<x-app-layout>
+
+@if(auth()->user()->role(auth()->user()->id) == 2)
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -15,7 +19,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-   
+   <br>
     <table class="table table-bordered">
         <tr>
             <th>Id</th>
@@ -24,22 +28,32 @@
             <th width="280px">Action</th>
         </tr>
         @foreach ($usuarios as $usuario)
-        <tr>
-            <td>{{ $usuario->id }}</td>
-            <td>{{ $usuario->name }}</td>
-            <td>{{ $usuario->Apellido1 }}</td>
-            <td>
-                <form action="{{ route('usuarios.destroy',$usuario->id) }}" method="POST">
-    
-                    <a class="btn btn-primary" href="{{ route('usuarios.edit',$usuario->id) }}">Edit</a>
-   
-                    @csrf
-                    @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
+            @if($usuario->role($usuario->id) == 3)
+
+            <tr>
+                <td>{{ $usuario->id }}</td>
+                <td>{{ $usuario->name }}</td>
+                <td>{{ $usuario->apellido1 }}</td>
+                <td>
+                    <form action="{{ route('usuarios.destroy',$usuario->id) }}" method="POST">
+
+                        <a class="btn btn-primary" href="{{ route('usuarios.show',$usuario) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ route('usuarios.edit',$usuario) }}">Edit</a>
+       
+                        @csrf
+                        @method('DELETE')
+          
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endif
         @endforeach
     </table>
-  
+    @else 
+        <div class="alert alert-warning">
+            <p>No tienes permisos de admnistrador en esta comunidad</p>
+        </div> 
+@endif
+</x-app-layout>
+

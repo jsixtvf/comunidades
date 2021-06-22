@@ -1,5 +1,5 @@
 <x-app-layout>
-@if($usuario->role() == 2)
+@if($usuario->role(auth()->user()->id) == 2)
     <div class="pull-right">
         <a class="btn btn-success" href="{{ route('propiedades.create') }}">Crear propiedad</a>
     </div>
@@ -24,7 +24,7 @@
                     @csrf
                     @method('DELETE')
 
-                    @if($usuario->role() == 2)
+                    @if($usuario->role(auth()->user()->id) == 2)
                     <button type="submit" class="btn btn-danger">Borrar</button>
                     @endif
                     

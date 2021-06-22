@@ -24,24 +24,26 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-        "Nombre" => ["required", "max:30"],
-        "Tratamiento" => ["required", "in:Sr,Sra"]
-        "Apellido1" => ["required", "max:30"],
-        "Apellido2" => ["required", "max:30"],
-        "DNI" => ["required", "max:9"],
-        "Email" => ["required", "max:30"],
-        "Telefono" => ["required", "max:9"],
-        "Calle" => ["required", "max:30"],
-        "Portal" => ["required", "max:4"],
-        "Bloque" => ["required", "max:4"],
-        "Escalera" => ["required", "max:4"],
-        "Piso" => ["required", "max:4"],
-        "Puerta" => ["required", "max:4"],
-        "Codigo_pais" => ["required", "max:2"],
-        "CP" => ["required", "max:5"],
-        "Pais" => ["required", "max:20"],
-        "Provincia" => ["required", "max:20"],
-        "Localidad" => ["required", "max:20"]
+        'name' => ['required', 'max:30'],
+        'email' => ['required', 'max:30'],
+        'password' => ['required', 'max:30'],
+        'tratamiento' => ['required', 'in:Sr,Sra'],
+        'apellido1' => ['required', 'max:30'],
+        'apellido2' => ['required','max:30'],
+        'fecha' => ['required', 'max:30'],
+        'dni' => ['required', 'max:9'],
+        'telefono' => ['required', 'max:9'],
+        'calle' => ['required', 'max:30'],
+        'portal' => ['required', 'max:4'],
+        'bloque' => ['required', 'max:4'],
+        'escalera' => ['required', 'max:4'],
+        'piso' => ['required', 'max:4'],
+        'puerta' => ['required', 'max:4'],
+        'codigo_pais' => ['required', 'max:2'],
+        'cp' => ['required', 'max:5'],
+        'pais' => ['required', 'max:20'],
+        'provincia' => ['required', 'max:20'],
+        'localidad' => ['required', 'max:20']
         ];
     }
 }

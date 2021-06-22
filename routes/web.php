@@ -48,8 +48,7 @@ Route::get('listar',function () {
 });
 
 
-//Route::resource('propietario','PropietarioController');
-Route::resource('usuario', PropietarioController::class)->names('usuario');
+Route::resource('usuarios', UserController::class)->names('usuarios');
 
 
 //Route::resource('listaPropietarios', 'ListaPropietariosController');

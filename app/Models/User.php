@@ -30,24 +30,25 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        "Tratamiento",
-        "Apellido1",
-        "Apellido2",
-        "Tipo",
-        "Fecha",
-        "DNI",
-        "Telefono",
-        "Calle",
-        "Portal",
-        "Bloque",
-        "Escalera",
-        "Piso",
-        "Puerta",
-        "Codigo_pais",
+        "tratamiento",
+        "apellido1",
+        "apellido2",
+        "tipo",
+        "fecha",
+        "dni",
+        "telefono",
+        "calle",
+        "portal",
+        "bloque",
+        "escalera",
+        "piso",
+        "puerta",
+        "codigo_pais",
         "cp",
-        "Pais",
-        "Provincia",
-        "Localidad"
+        "pais",
+        "provincia",
+        "localidad",
+        "remember_token"
     ];
 
     /**
@@ -96,13 +97,12 @@ class User extends Authenticatable
         return $this->hasMany(Propiedad::class);
     }
 
-    public function role(){
+    public function role($user_id){
 
         //metodo a incluir en el modelo User, obtenemos una query del rol de cada usuario en la comunidad.
 
         //Recuperamos de la sesion y el middleware, el id de la comunidad y el id de usuario, respectivamente.
         $comunidad_id = session()->get('activeCommunity')->id;
-        $user_id = auth()->user()->id;
 
         return  $role_id = User::join('comunidad_user', 'users.id', '=', 'comunidad_user.user_id')
         ->where('user_id', '=', $user_id)->where('comunidad_user.comunidad_id', '=', $comunidad_id)
