@@ -22,7 +22,6 @@
         </div>
     @endif
 
-    @if(auth()->user()->role(auth()->user()->id) == 2) 
     <form action="" method="POST">
         @csrf
         @method('PUT')
@@ -61,10 +60,4 @@
             </div>
         </div>
     </form>
-
-        @else 
-            <div class="alert alert-warning">
-                <p>No tienes permisos de admnistrador en esta comunidad</p>
-            </div> 
-    @endif
 </x-app-layout>

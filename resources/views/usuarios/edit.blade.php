@@ -23,47 +23,47 @@
     @endif
 
     @if(auth()->user()->role(auth()->user()->id) == 2) 
-    <form action="{{ route('usuarios.update',$usuario->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-   
-         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $usuario->name }}" class="form-control" placeholder="Name">
+        <form action="{{ route('usuarios.update',$usuario->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+       
+             <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Name:</strong>
+                        <input type="text" name="name" value="{{ $usuario->name }}" class="form-control" placeholder="Name">
+                    </div>
+                </div>
+                 </br>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Apellido:</strong>
+                        <textarea class="form-control"  name="Apellido1" placeholder="Apellido">{{ $usuario->apellido1 }}</textarea>
+                    </div>
+                </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Telefono:</strong>
+                        <textarea class="form-control"  name="Telefono" placeholder="Telefono">{{ $usuario->telefono }}</textarea>
+                    </div>
+                </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Calle:</strong>
+                        <textarea class="form-control"  name="Calle" placeholder="Calle">{{ $usuario->calle }}</textarea>
+                    </div>
+                </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>CP:</strong>
+                        <textarea class="form-control"  name="CP" placeholder="CP">{{ $usuario->cp }}</textarea>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-             </br>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Apellido:</strong>
-                    <textarea class="form-control"  name="Apellido1" placeholder="Apellido">{{ $usuario->apellido1 }}</textarea>
-                </div>
-            </div>
-               <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Telefono:</strong>
-                    <textarea class="form-control"  name="Telefono" placeholder="Telefono">{{ $usuario->telefono }}</textarea>
-                </div>
-            </div>
-               <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Calle:</strong>
-                    <textarea class="form-control"  name="Calle" placeholder="Calle">{{ $usuario->calle }}</textarea>
-                </div>
-            </div>
-               <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>CP:</strong>
-                    <textarea class="form-control"  name="CP" placeholder="CP">{{ $usuario->cp }}</textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </form>
+        </form>
 
         @else 
             <div class="alert alert-warning">

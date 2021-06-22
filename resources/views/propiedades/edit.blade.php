@@ -11,7 +11,7 @@
                         <x-jet-validation-errors></x-jet-validation-errors>
                     </div>
                 </div>
-
+            @if($usuario->role(auth()->user()->id) == 2)
                 <form action="{{ route('propiedades.update',$propiedad) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -28,16 +28,16 @@
                                 <input type="text" name="nombre" value="{{ $propiedad->nombre }}" class="form-control" placeholder="Name">
                             </div>
                             <div class="form-group">
-                                <strong>Propietario:</strong>
-<!--                                 <input type="text" name="propietario" value="{{ $propiedad->propietario }}" class="form-control" placeholder="Name">
- -->                             <select class="form-select" aria-label="Default select example" name="propietario_id">
+                                <strong>Usuario:</strong>
+<!--                                 <input type="text" name="usuario" value="{{ $propiedad->usuario }}" class="form-control" placeholder="Name">
+ -->                             <select class="form-select" aria-label="Default select example" name="usuario_id">
 
-                                    <option value="0">@lang('Selecciona propietario')</option>
-                                    @forelse($propietarios as $propietario)
-                                    @if ( old('propietario_id', $propiedad->propietario_id) == $propietario->id )
-                                    <option value="{{ $propietario->id }}" selected > {{ $propietario->Nombre }} {{ $propietario->Apellido1 }}, {{ $propietario->DNI }} </option>
+                                    <option value="0">@lang('Selecciona Usuario')</option>
+                                    @forelse($usuarios as $usuario)
+                                    @if ( old('usuario_id', $propiedad->usuario_id) == $usuario->id )
+                                    <option value="{{ $usuario->id }}" selected > {{ $usuario->Nombre }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
                                     @else
-                                    <option value="{{ $propietario->id }}"> {{ $propietario->Nombre }} {{ $propietario->Apellido1 }}, {{ $propietario->DNI }} </option>
+                                    <option value="{{ $usuario->id }}"> {{ $usuario->nombre }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
                                     @endif
                                     @empty
                                     <p>vacio</p>
@@ -80,6 +80,11 @@
                         </div>
                     </div>
                 </form>
+                 @else 
+                    <div class="alert alert-warning">
+                        <p>No tienes permisos de admnistrador en esta comunidad</p>
+                    </div> 
+            @endif
             </div>
         </div>
     </div>

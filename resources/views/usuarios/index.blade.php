@@ -2,15 +2,16 @@
 
 <x-app-layout>
 
-@if(auth()->user()->role(auth()->user()->id) == 2)
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Usuarios</h2>
             </div>
+            @if(auth()->user()->role(auth()->user()->id) == 2)
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('usuarios.create') }}"> Create New User</a>
             </div>
+            @endif
         </div>
     </div>
    
@@ -50,10 +51,5 @@
             @endif
         @endforeach
     </table>
-    @else 
-        <div class="alert alert-warning">
-            <p>No tienes permisos de admnistrador en esta comunidad</p>
-        </div> 
-@endif
 </x-app-layout>
 
