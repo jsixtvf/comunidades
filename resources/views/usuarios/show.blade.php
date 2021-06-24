@@ -27,35 +27,53 @@
         @method('PUT')
    
          <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Tratamiento:</strong>
+                    <input disabled type="text" name="tratamiento" value="{{ $usuario->tratamiento }}" class="form-control" placeholder="tratamiento">
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input disabled type="text" name="name" value="{{ $usuario->name }}" class="form-control" placeholder="Name">
+                    <input disabled type="text" name="name" value="{{ $usuario->name }}" class="form-control" placeholder="name">
                 </div>
             </div>
              </br>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Apellido:</strong>
-                    <textarea disabled class="form-control"  name="Apellido1" placeholder="Apellido">{{ $usuario->apellido1 }}</textarea>
+                    <textarea disabled class="form-control"  name="apellido1" placeholder="apellido">{{ $usuario->apellido1 }}</textarea>
+                </div>
+            </div>
+             <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Apellido 2:</strong>
+                    <textarea disabled class="form-control"  name="apellido2" placeholder="apellido2">{{ $usuario->apellido2 }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Telefono:</strong>
-                    <textarea disabled class="form-control"  name="Telefono" placeholder="Telefono">{{ $usuario->telefono }}</textarea>
+                    <strong>e-mail:</strong>
+                    <textarea disabled class="form-control"  name="email" placeholder="email">{{ $usuario->email }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Calle:</strong>
-                    <textarea disabled class="form-control"  name="Calle" placeholder="Calle">{{ $usuario->calle }}</textarea>
+                    <strong>Pais:</strong>
+                    <textarea disabled class="form-control"  name="pais" placeholder="pais">{{ $usuario->pais }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>CP:</strong>
-                    <textarea disabled class="form-control"  name="CP" placeholder="CP">{{ $usuario->cp }}</textarea>
+                    <strong>Provincia:</strong>
+                    <textarea disabled class="form-control"  name="provincia" placeholder="provincia">{{ $usuario->provincia }}</textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Localidad:</strong>
+                    <textarea disabled class="form-control"  name="localidad" placeholder="localidad">{{ $usuario->localidad }}</textarea>
                 </div>
             </div>
         </div>

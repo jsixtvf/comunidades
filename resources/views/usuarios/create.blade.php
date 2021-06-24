@@ -86,11 +86,11 @@
 
                         
                         <label for="fecha" class="form-label">"Fecha"</label>
-                        <input requied type="date" id="fecha" name="fecha" value="{{ old('fecha') }}" class="form-control" />
+                        <input required type="date" id="fecha" name="fecha" value="{{ old('fecha') }}" class="form-control" />
 
                         
                         <label for="dni" class="form-label">"DNI"</label>
-                        <input requied type="text" id="dni" name="dni" class="form-control" value="{{ old('dni') }}">
+                        <input required type="text" id="dni" name="dni" class="form-control" value="{{ old('dni') }}">
                         @error('dni')
                             <div class="alert alert-danger mb-2" role="alert">
                                 {{ $message }}
@@ -98,7 +98,7 @@
                         @enderror
                         
                         <label for="email" class="form-label">"Email"</label>
-                        <input requied type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
+                        <input required type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
                         @error('email')
                             <div class="alert alert-danger mb-2" role="alert">
                                 {{ $message }}
@@ -172,7 +172,7 @@
                             </div>
                         @enderror
                         
-                        <label for="cp" class="form-label">"CP"</label>
+                        <label for="cp" class="form-label">"Codigo postal"</label>
                         <input required type="text" id="cp" name="cp" class="form-control" value="{{ old('cp') }}">
                         @error('cp')
                             <div class="alert alert-danger mb-2" role="alert">
@@ -205,6 +205,7 @@
                         @enderror
                         <br>
                         <button type="submit" class="btn btn-secondary">Enviar</button>
+                        <br>
                     </form>
                 @else 
                     <div class="alert alert-warning">

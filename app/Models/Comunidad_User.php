@@ -19,7 +19,7 @@ class Comunidad_User extends Model {
         'updated_at'
     ];
     
-    public function comunidades() {
+  /*  public function comunidades() {
         return $this->belongsToMany('comunidad')->withTimestamps();
     }
     
@@ -29,5 +29,5 @@ class Comunidad_User extends Model {
     
     public function roles() {
         return $this->belongsToMany('role')->withTimestamps();
-    }
+    }*/
 }
