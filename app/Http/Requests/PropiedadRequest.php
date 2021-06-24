@@ -23,12 +23,12 @@ class PropiedadRequest extends FormRequest {
     public function rules() {
         return [
             'nombre' => ['required', 'max:30'],
-            'user_id' => ['required','exists:propietarios,id'],
             'tipo' => ['required', 'in:local,piso,atico'],
-            'coeficiente' => ['required'],
-            'parte' => ['required'],
-            'observacion' => ['max:100'],
-            'comunidad_activa' => ['required']
+            'coeficiente' => 'required',
+            'parte' => 'required',
+            'observaciones' => 'max:100',
+            'comunidad_id' => ['required','exists:comunidades,id'],
+            'user_id' => ['required','exists:users,id']
         ];
     }
 

@@ -42,7 +42,8 @@ class PropiedadController extends Controller {
         
         return view("propiedades.create", [
             'propiedad' => new Propiedad,
-            'usuarios' => session()->get('activeCommunity')->usuarios
+            'usuarios' => session()->get('activeCommunity')->usuarios,
+            'usuario' => auth()->user()
 
             //'comunidades' => $this->comunidades
         ] );
@@ -57,15 +58,26 @@ class PropiedadController extends Controller {
      */
     public function store(PropiedadRequest $request) {
 
-        Propiedad::create($request->validated());
 
-      /*  DB::table('propiedades')->insert([
-            'nombre' => $request->nombre,
-            'propietario_id' => $request->propietario,
-            'tipo' => $request->tipo,
-            'coeficiente' => $request->coeficiente,
-            'parte' => $request->parte,
-            'observaciones' => $request->observaciones,
+        $comunidad_id = $request->get('comunidad_id');
+        //dd($comunidad_id);
+        $user_id = $request->get('user_id');
+        //dd($user_id);
+        $request->request->add( ['comunidad_id' => gmp_intval(gmp_init($comunidad_id ))] );
+        $request->request->add( ['user_id' => gmp_intval(gmp_init($user_id ))] );
+       
+        //dd(gettype($request->comunidad_id)); dd($request->validated()); dd($request);
+
+        Propiedad::create( $request->validated() );
+
+      /*
+        $request->request->add(['user_id' => $user_id]); ( esta opcion, si se hace aqui la validacion,
+        no en PropiedadRequest )
+
+        DB::table('propiedades')->insert([
+            'nombre' => $request->nombre, 'propietario_id' => $request->propietario,
+            'tipo' => $request->tipo, 'coeficiente' => $request->coeficiente,
+            'parte' => $request->parte, 'observaciones' => $request->observaciones,
         ]);*/
 
         return redirect()->route('propiedades.index')
@@ -83,7 +95,8 @@ class PropiedadController extends Controller {
     $tipos = ['local', 'piso','atico'];
         return view('propiedades.show', [
             'propiedad' => $propiedad,
-            'tipos' => $tipos
+            'tipos' => $tipos,
+            'usuario' => auth()->user()
         ]);
     }
 
@@ -99,7 +112,8 @@ class PropiedadController extends Controller {
         return view('propiedades.edit', [
             'propiedad' => $propiedad,
             'tipos' => $tipos,
-            'usuarios' => $this->usuarios
+            'usuarios' => session()->get('activeCommunity')->usuarios,
+            'usuario' => auth()->user()
         ]);
     }
 
@@ -112,15 +126,16 @@ class PropiedadController extends Controller {
      */
     public function update(PropiedadRequest $request, Propiedad $propiedad) {
 
-        /*  $request->validate([
-            'nombre' => 'required',
-            'propietario_id' => 'required',
-            'tipo' => ['required', 'in:local, piso, atico'],
-            'coeficiente' => ['required'],
-            'parte' => ['required'],
-            'observacion' => ['max:100']
-        ]);
+        /* Ejemplo de casteo a bigint
+        $str = "99999977706";
+        $bigInt = gmp_init($str);
+        $bigIntVal = gmp_intval($bigInt);
         */
+        //$numero = 29;
+
+        /* Problema con las variables comunidad_id y user_id, llegan sus valores obtenidos por request
+        pero no llegan a validarse */
+
 
         $propiedad->update($request->validated()); //$request->all()
 

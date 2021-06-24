@@ -16,13 +16,12 @@ class Propiedad extends Model {
     
     protected $fillable = [
         "nombre",
-        "propietario",
-        "tipo",
-        "coeficiente",
         "parte",
+        "coeficiente",
+        "tipo",
         "observaciones",
-        "comunidad_activa"
-
+        "comunidad_id",
+        "user_id"
     ];
 
     public function comunidad() {

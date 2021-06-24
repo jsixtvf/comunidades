@@ -71,33 +71,15 @@ class UserController extends Controller
         return redirect()->route('usuarios.index')->with('status', [$this->msj, 'alert-success']);
 
        // return $request;
-
-
         /* DB::table('users')->insert([
-                'tratamiento'=>$request->Tratamiento,
-                'name'=>$request->name,
-                'apellido1'=>$request->Apellido1,
-                'apellido2'=>$request->Apellido2,
-                'password'=>$request->password,
-                'tipo'=>$request->Tipo, 
-                'fecha'=>$request->Fecha,
-                'dni'=>$request->dni,
-                'email'=>$request->email,
-                'telefono'=>$request->Telefono,
-                'calle'=>$request->Calle,
-                'portal'=>$request->Portal,
-                'bloque'=>$request->Bloque,
-                'escalera'=>$request->Escalera,
-                'piso'=>$request->Piso,
-                'puerta'=>$request->Puerta,
-                'codigo_pais'=>$request->Codigo_pais,
-                'cp'=>$request->CP,
-                'pais'=>$request->Pais,
-                'provincia'=>$request->Provincia,
-                'localidad' => $request->Localidad,
-                //'limitMaxFreeCommunities'=> 2,
-                //'comunidad_id' => session()->get('activeCommunity')->id
-                ]);*/
+        'tratamiento'=>$request->Tratamiento, 'name'=>$request->name, 'apellido1'=>$request->Apellido1,
+        'apellido2'=>$request->Apellido2, 'password'=>$request->password, 'tipo'=>$request->Tipo, 'fecha'=>$request->Fecha,
+        'dni'=>$request->dni, 'email'=>$request->email, 'telefono'=>$request->Telefono, 'calle'=>$request->Calle,
+        'portal'=>$request->Portal, 'bloque'=>$request->Bloque, 'escalera'=>$request->Escalera,
+        'piso'=>$request->Piso, 'puerta'=>$request->Puerta, 'codigo_pais'=>$request->Codigo_pais,'cp'=>$request->CP,
+        'pais'=>$request->Pais,'provincia'=>$request->Provincia, 'localidad' => $request->Localidad,
+        //'limitMaxFreeCommunities'=> 2, //'comunidad_id' => session()->get('activeCommunity')->id
+        ]);*/
 
 
 

@@ -8,7 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Propietario</th>
+                <th>Usuario</th>
                 <th>Acciones</th>
             </tr>
             @foreach ($propiedades as $propiedad)

@@ -29,8 +29,14 @@
                 @endif -->
 
             @if(auth()->user()->role(auth()->user()->id) == 2)
+
+                    
                     <form class="bg-white shadow rounded py-3 px-4" action="{{ route('usuarios.store') }}" method="POST">
                         <div class="mb-3 mt-5">
+                            <div class="pull-right">
+                                <a class="btn btn-primary" href="{{ route('usuarios.index') }}"> Back</a>
+                            </div>
+                        <br>
                         <h2>Usuarios</h2>
                     </div>
                      @csrf

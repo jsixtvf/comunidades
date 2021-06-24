@@ -24,9 +24,9 @@
                         @enderror
 
 
-                        <label for="usuario" class="form-label">Usuario</label>
+                        <label for="user_id" class="form-label">Usuario</label>
     <!--                     <input required type="text" id="usuario" name="usuario" class="form-control"  value="{{ old('usuario') }}"/>
-     -->                    <select class="form-select" aria-label="Default select example" name="usuario">
+     -->                    <select class="form-select" aria-label="Default select example" id="user_id" name="user_id">
 
                             <option value="0">@lang('Selecciona usuario')</option>
 
@@ -39,24 +39,23 @@
                                 @endforelse
 
                             </select>
-                            @error('usuario')
+                            @error('user_id')
                             <div class="alert alert-danger mb-2" role="alert">
                                 {{ $message }}
                             </div>
                             @enderror
 
-
                         <label for="comunidad" class="form-label">Comunidad</label>
-                        <div required type="text" id="comunidad_activa" name="comunidad_activa" class="form-control"  value="{{ session()->get('activeCommunity')->id }}">{{ session()->get('activeCommunity')->denom }} </div>
+                         <input type="hidden" id="comunidad_id" name="comunidad_id" value="{{ session()->get('activeCommunity')->id }}">
+                         <div class="form-control">{{ session()->get('activeCommunity')->denom }} </div>
                         @error('comunidad_activa')
                         <div class="alert alert-danger mb-2" role="alert">
                             {{ $message }}
                         </div>
                         @enderror
 
-
                         <label for="tipo" class="form-label">Tipo de propiedad</label>
-                        <select required class="form-select form-select-sm" id="tipo" name="tipo"   value="{{ old('tipo') }}">
+                        <select required class="form-select form-select-sm" id="tipo" name="tipo" value="{{ old('tipo') }}">
                             <option value="local">Local</option>
                             <option value="piso">Piso</option>
                             <option value="atico">Atico</option>
@@ -87,7 +86,7 @@
                         @enderror
 
                         <label for="observacion" class="form-label">Observaciones</label>
-                        <input type="text" id="observacion" name="observacion" class="form-control"  value="{{ old('observacion') }}"/>
+                        <input type="text" id="observaciones" name="observaciones" class="form-control"  value="{{ old('observaciones') }}"/>
 
                     </form>
                  @else 

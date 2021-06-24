@@ -30,17 +30,23 @@
                             <div class="form-group">
                                 <strong>Usuario:</strong>
 <!--                                 <input type="text" name="usuario" value="{{ $propiedad->usuario }}" class="form-control" placeholder="Name">
- -->                             <select class="form-select" aria-label="Default select example" name="usuario_id">
+ -->                             <select class="form-select" aria-label="Default select example" id="user_id" name="user_id">
 
                                     <option value="0">@lang('Selecciona Usuario')</option>
+
                                     @forelse($usuarios as $usuario)
-                                    @if ( old('usuario_id', $propiedad->usuario_id) == $usuario->id )
-                                    <option value="{{ $usuario->id }}" selected > {{ $usuario->Nombre }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
-                                    @else
-                                    <option value="{{ $usuario->id }}"> {{ $usuario->nombre }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
-                                    @endif
+
+                                        @if($usuario->role($usuario->id) == 3)
+                                            @if ( old('usuario_id', $propiedad->user_id) == $usuario->id )
+                                            <option value="{{ $usuario->id }}" selected > {{ $usuario->name }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
+                                            @else
+                                            <option value="{{ $usuario->id }}"> {{ $usuario->name }} {{ $usuario->apellido1 }}, {{ $usuario->dni }} </option>
+                                            @endif
+                                        @endif
+
                                     @empty
                                     <p>vacio</p>
+
                                     @endforelse
 
                                 </select>
@@ -75,8 +81,10 @@
 
                              <div class="form-group">
                                 <strong>Observaciones:</strong>
-                                <input type="textarea" name="observaciones" value="{{ $propiedad->observaciones }}" class="form-control" placeholder="Name">
+                                <input type="textarea" name="observaciones" value="{{ $propiedad->observaciones }}" class="form-control" placeholder="observaciones">
                             </div>
+                            <input type="number" name="comunidad_id" class="form-control" value="{{ session()->get('activeCommunity')->id }}" style="display: none">
+
                         </div>
                     </div>
                 </form>

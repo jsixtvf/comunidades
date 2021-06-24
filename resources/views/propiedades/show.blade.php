@@ -30,7 +30,7 @@
                                 <div type="text" name="nombre" class="form-control" >{{ $propiedad->nombre }}</div>
                             </div>
                             <div class="form-group">
-                                <strong>Propietario:</strong>
+                                <strong>Usuario:</strong>
                                 <div type="text" name="propietario" class="form-control" >{{ $propiedad->nombreUser($propiedad->user_id) }}</div>
                             </div>
                                <div class="form-group">

@@ -29,11 +29,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
+        "remember_token",
         "tratamiento",
         "apellido1",
         "apellido2",
-        "tipo",
+        //"tipo",
         "fecha",
         "dni",
         "telefono",
@@ -47,8 +49,7 @@ class User extends Authenticatable
         "cp",
         "pais",
         "provincia",
-        "localidad",
-        "remember_token"
+        "localidad"
     ];
 
     /**
