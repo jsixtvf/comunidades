@@ -20,18 +20,28 @@ class UserController extends Controller
 
     public function __construct() {
 
-        $this->activeCommunity = session()->get('activeCommunity');
+       // $this->activeCommunity = session()->get('activeCommunity');
        
     }
 
     public function index()
-    {
-       // return view("propietario");
-        $usuarios = session()->get('activeCommunity')->usuarios;
-        //User::latest()->paginate(10);
-    
-        return view('usuarios.index',compact('usuarios'))
+    {   // return view("propietario"); //$usuarios = session()->get('activeCommunity')->usuarios;
+        // User::latest()->paginate(10);
+        $comunidad_activa = session()->get('activeCommunity');
+
+        $usuarios = User::join('comunidad_user', 'comunidad_user.user_id', '=', 'users.id')
+            ->where('comunidad_user.comunidad_id','=', $comunidad_activa->id)->get();
+
+       //dd($usuarios);
+        return view('usuarios.index',
+            //compact('usuarios')
+            [//'usuarios' => $usuarios,
+            'usuarios' => $usuarios,
+            'activeCommunity' => $comunidad_activa
+            ]
+         )
             ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     /**
@@ -68,6 +78,9 @@ class UserController extends Controller
             'updated_at' => $new_user->updated_at
         ]);
 
+       // session()->put('activeCommunity', null);
+       // session()->put('activeCommunity', $comunidad_activa);
+
         return redirect()->route('usuarios.index')->with('status', [$this->msj, 'alert-success']);
 
        // return $request;
@@ -80,8 +93,6 @@ class UserController extends Controller
         'pais'=>$request->Pais,'provincia'=>$request->Provincia, 'localidad' => $request->Localidad,
         //'limitMaxFreeCommunities'=> 2, //'comunidad_id' => session()->get('activeCommunity')->id
         ]);*/
-
-
 
     }
     
@@ -117,7 +128,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $usuarios)
+    public function update(UserRequest $request, User $usuario)
     {
         //
     /*      $request->validate([
@@ -126,7 +137,7 @@ class UserController extends Controller
                
         ]);*/
     
-        $usuarios->update($request->validated());
+        $usuario->update($request->validated());
     
         return redirect()->route('usuarios.index')
                         ->with('success','User updated successfully');
@@ -138,10 +149,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $usuario)
     {
         //
-        $usuarios->delete();
+        $usuario->delete();
     
         return redirect()->route('usuarios.index')
                         ->with('success','User deleted successfully');

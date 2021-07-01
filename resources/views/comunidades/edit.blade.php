@@ -1,4 +1,7 @@
 <x-app-layout>
+
+@if($activeCommunity->nombreRole(auth()->user()->id) == 'admin')
+
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-10 col-lg-10 mx-auto">
@@ -15,4 +18,10 @@
             </div>
         </div>
     </div>
+@else 
+    <div class="alert alert-warning">
+        <p>No tienes permisos para editar en esta comunidad</p>
+    </div> 
+@endif
+
 </x-app-layout>

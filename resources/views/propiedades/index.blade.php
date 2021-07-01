@@ -1,4 +1,5 @@
 <x-app-layout>
+
     @if($usuario->role(auth()->user()->id) == 2)
         <div class="pull-right">
             <a class="btn btn-success" href="{{ route('propiedades.create') }}">Crear propiedad</a>
@@ -11,6 +12,11 @@
                 <th>Usuario</th>
                 <th>Acciones</th>
             </tr>
+
+    @if( $activeCommunity->nombreRole($usuario->id) != 'admin' )
+        $propiedades = $usuario->propiedades;
+    @endif
+
             @foreach ($propiedades as $propiedad)
             <tr>
                 <td>{{ $propiedad->id }}</td>
@@ -33,4 +39,5 @@
             </tr>
             @endforeach
         </table>
+
 </x-app-layout>

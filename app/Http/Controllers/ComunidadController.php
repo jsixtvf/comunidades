@@ -31,7 +31,8 @@ class ComunidadController extends Controller {
         
         return view('comunidades.index', [
             'user' => $user,
-            'comunidades' => $user->comunidades
+            'comunidades' => $user->comunidades,
+            'activeCommunity' => session()->get('activeCommunity')
         ]);
     }
 
@@ -101,7 +102,8 @@ class ComunidadController extends Controller {
             'comunidad' => $comunidad,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'disabled'
+            'btndisabled' => 'disabled',
+            'activeCommunity' => session()->get('activeCommunity')
         ]);
     }
 
@@ -118,7 +120,9 @@ class ComunidadController extends Controller {
             'title' => 'Edit Comunidad', 
             'btnText1' => 'Update', 
             'btnText2' => 'Cancel',
-            'btndisabled' => ' '
+            'btndisabled' => ' ',
+            'activeCommunity' => session()->get('activeCommunity')
+
         ]);
     }
 

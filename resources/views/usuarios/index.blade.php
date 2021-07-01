@@ -1,15 +1,16 @@
 <x-app-layout>
 
+@if($activeCommunity->nombreRole(auth()->user()->id) == 'admin')
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Usuarios</h2>
             </div>
-            @if(auth()->user()->role(auth()->user()->id) == 2)
+            
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('usuarios.create') }}"> Create New User</a>
             </div>
-            @endif
         </div>
     </div>
    
@@ -18,7 +19,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-   <br>
+    <br>
     <table class="table table-bordered">
         <tr>
             <th>Id</th>
@@ -34,7 +35,7 @@
                 <td>{{ $usuario->name }}</td>
                 <td>{{ $usuario->apellido1 }}</td>
                 <td>
-                    <form action="{{ route('usuarios.destroy',$usuario->id) }}" method="POST">
+                    <form action="{{ route('usuarios.destroy',$usuario) }}" method="POST">
 
                         <a class="btn btn-primary" href="{{ route('usuarios.show',$usuario) }}">Show</a>
                         <a class="btn btn-primary" href="{{ route('usuarios.edit',$usuario) }}">Edit</a>
@@ -49,5 +50,12 @@
             @endif
         @endforeach
     </table>
+
+  @else 
+    <div class="alert alert-warning">
+        <p>No tienes permisos para ver los usuarios de esta comunidad</p>
+    </div> 
+  @endif
+
 </x-app-layout>
 

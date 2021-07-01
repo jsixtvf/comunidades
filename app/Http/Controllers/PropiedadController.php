@@ -33,8 +33,10 @@ class PropiedadController extends Controller {
 
         $propiedades = Propiedad::latest()->paginate(5);
         $usuario = auth()->user();
-        return view('propiedades.index', compact('propiedades'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5)->with('usuario',$usuario);
+        return view('propiedades.index',[
+            'propiedades' => $propiedades,
+            'activeCommunity' => session()->get('activeCommunity')
+            ] )->with('i', (request()->input('page', 1) - 1) * 5)->with('usuario',$usuario);
     }
 
     public function create() {

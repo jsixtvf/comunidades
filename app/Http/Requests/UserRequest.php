@@ -24,26 +24,26 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-        'name' => ['required', 'max:30'],
-        'email' => ['required', 'max:30'],
-        'password' => ['required', 'max:30'],
-        'tratamiento' => ['required', 'in:Sr,Sra'],
-        'apellido1' => ['required', 'max:30'],
-        'apellido2' => ['required','max:30'],
-        'fecha' => ['required', 'max:30'],
-        'dni' => ['required', 'max:9'],
-        'telefono' => ['required', 'max:9'],
-        'calle' => ['required', 'max:30'],
-        'portal' => ['required', 'max:4'],
-        'bloque' => ['required', 'max:4'],
-        'escalera' => ['required', 'max:4'],
-        'piso' => ['required', 'max:4'],
-        'puerta' => ['required', 'max:4'],
-        'codigo_pais' => ['required', 'max:2'],
-        'cp' => ['required', 'max:5'],
-        'pais' => ['required', 'max:20'],
-        'provincia' => ['required', 'max:20'],
-        'localidad' => ['required', 'max:20']
+        'name' => 'required|max:30',
+        'email' => 'required|max:30',
+        'password' => 'required|max:30',
+        'tratamiento' => 'required|in:Sr,Sra',
+        'apellido1' => 'required|max:30',
+        'apellido2' => 'max:30',
+        'fecha' => 'required|max:30',
+        'dni' => 'required|max:9',
+        'telefono' => 'required|max:9',
+        'calle' => 'required|max:30',
+        'portal' => 'max:4',
+        'bloque' => 'max:4',
+        'escalera' => 'max:4',
+        'piso' => 'max:4',
+        'puerta' => 'max:4',
+        'codigo_pais' => 'required|max:2',
+        'cp' => 'required|max:5',
+        'pais' => 'required|max:20',
+        'provincia' => 'required|max:20',
+        'localidad' => 'required|max:20'
         ];
     }
 }

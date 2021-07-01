@@ -138,10 +138,10 @@ class ProveedorController extends Controller {
     public function destroy(Proveedor $proveedor) {
 
         $this->msj = 'El proveedor fué eliminado con éxito';
-
+        
         $proveedor->delete();
 
-        return redirect()->route('proveedores.pasarComunidad', $proveedor)->with('status', [$this->msj, 'alert-danger']);
+        return redirect()->route('proveedores.pasarComunidad', session()->get('activeCommunity'))->with('status', [$this->msj, 'alert-danger']);
     }
 
     public function select(Proveedor $proveedor) {

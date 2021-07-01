@@ -1,5 +1,7 @@
 <x-app-layout>
 
+@if($activeCommunity->nombreRole(auth()->user()->id) == 'admin')
+   
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Community Show | ' . $proveedor->nombre ) }}
@@ -58,44 +60,13 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="calle">@lang('street')</label>
                             <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->calle }} </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="portal">@lang('doorway')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->portal }} </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="bloque">@lang('block')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->bloque }} </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="escalera">@lang('stair')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->escalera }} </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="piso">@lang('floor')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->piso }} </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="puerta">@lang('door')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->puerta }} </div>
-                        </div>
-                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="codigopais">@lang('countrycode')</label>
@@ -138,4 +109,10 @@
             </div>
         </div>
     </div>
+
+@else
+    <div class="alert alert-warning">
+        <p>No tienes permisos para ver los proveedores de esta comunidad</p>
+    </div>
+@endif
 </x-app-layout>
