@@ -106,8 +106,8 @@ class User extends Authenticatable
         $comunidad_id = session()->get('activeCommunity')->id;
 
         return  $role_id = User::join('comunidad_user', 'users.id', '=', 'comunidad_user.user_id')
-        ->where('user_id', '=', $user_id)->where('comunidad_user.comunidad_id', '=', $comunidad_id)
-        ->get()->pluck('role_id')->last();
+        ->where('comunidad_user.user_id', '=', $user_id)->where('comunidad_user.comunidad_id', '=', $comunidad_id)
+        ->select('role_id'); //get()->pluck('role_id')->last();
     }
     
     /*public function roles() {

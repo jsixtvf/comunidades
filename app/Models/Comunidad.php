@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comunidad extends Model {
 
@@ -65,7 +65,11 @@ class Comunidad extends Model {
     }
 
     public function paises() {
-        return $this->belongsTo(Pais::class, 'id', 'pais')->withTimestamps();
+        return $this->belongsTo(Pais::class)->withTimestamps();
+    }
+
+     public function provincias() {
+        return $this->belongsTo(Provincia::class)->withTimestamps();
     }
 
     public function nombrePais($id){

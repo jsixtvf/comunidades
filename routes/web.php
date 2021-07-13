@@ -17,7 +17,10 @@ use Psr\Container\ContainerInterface;
  */
 
 Route::get('/', function () {
+    
+    //return "hola mundo";
     return view('welcome');
+    
 });
 
 

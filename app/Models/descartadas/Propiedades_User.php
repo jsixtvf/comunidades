@@ -17,10 +17,10 @@ class Propiedades_User extends Model
     ];
 
     public function distribucion(){
-        return $this->belongsTo(distribucion_gastos::class);
+        return $this->belongsTo(DistribucionGastos::class);
     }
 
     public function movimiento(){
-        return $this -> belongsTo(movimientos::class);
+        return $this->belongsTo(Movimientos::class);
     }
 }

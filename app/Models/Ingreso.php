@@ -10,8 +10,23 @@ class Ingreso extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $fillable=[
+  
+    protected $table = 'ingresos';
+
+    protected $fillable = [
+        'fecha',
+        'cantidad',
+        'cuenta',
+        'Propietario',
         
     ];
+
+    public function cuenta(){
+        return $this->belongsTo(CuentasBancarias::class);
+    }
+
+    public function ingresos(){
+        return $this->hasMany(Propietario::class);
+    }
+
 }

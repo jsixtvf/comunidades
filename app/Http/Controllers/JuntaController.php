@@ -14,7 +14,6 @@ class JuntaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
     private $msj = '';
     private $tipos = ['ordinaria', 'extraordinaria'];
     
@@ -22,7 +21,7 @@ class JuntaController extends Controller
     {
         
         $this->user = auth()->user();
-        $comunidad = session()->get('activeCommunity');
+        //$comunidad = session()->get('activeCommunity');
         $comunidad_activa = session()->get('activeCommunity');
         $juntas = $comunidad_activa->juntas;
         //$juntas = Junta::all();
@@ -37,7 +36,6 @@ class JuntaController extends Controller
             'btndisabled' => ''
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +54,6 @@ class JuntaController extends Controller
             'btndisabled' => ''
             ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -70,14 +67,13 @@ class JuntaController extends Controller
         
         $request->merge([
             'user_id' => auth()->user()->id,
-            'comunidad_id' => 1
+            'comunidad_id' => session()->get('activeCommunity')->id
         ]);
 
         Junta::create($request->validated());
         
         return redirect()->route('juntas.index')->with('status', [$this->msj, 'alert-success']);
     }
-
     /**
      * Display the specified resource.
      *
@@ -86,15 +82,14 @@ class JuntaController extends Controller
      */
     public function show(Junta $junta)
     {
-        return view('juntas.alt_show', [
+        return view('juntas.show', [ //juntas.alt_show
             'junta' => $junta,
             'tipos' => $this->tipos,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'd-none'
+            'btndisabled' => 'disabled' //'d-none'
         ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -112,7 +107,6 @@ class JuntaController extends Controller
             'btndisabled' => ''
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -128,7 +122,6 @@ class JuntaController extends Controller
 
         return redirect()->route('juntas.show', $junta)->with('status', [$this->msj, 'alert-success']);
     }
-
     /**
      * Remove the specified resource from storage.
      *

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class movimientos extends Model {
+class Movimientos extends Model {
 
     use HasFactory;
 
@@ -24,11 +24,11 @@ class movimientos extends Model {
     ];
 
     public function cuenta() {
-        return $this->belongTo(cuentasBancarias::class);
+        return $this->belongsTo(CuentasBancarias::class);
     }
 
     public function distribucion() {
-        return $this->hasOne(distribucion_gastos::class);
+        return $this->hasOne(DistribucionGastos::class);
     }
 
     public function propiedades() {

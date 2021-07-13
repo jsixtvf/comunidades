@@ -5,6 +5,20 @@
             <a class="btn btn-success" href="{{ route('propiedades.create') }}">Crear propiedad</a>
         </div>
     @endif
+      
+
+    @if( $activeCommunity->nombreRole($usuario->id) != 'admin' )
+        @php $propiedades = $usuario->propiedades; @endphp
+    @endif
+
+    @if($propiedades->where($usuario->id)->count() == 0)
+
+            <div class="alert alert-warning">
+                <p>No eres propietario en esta comunidad</p>
+            </div> 
+            
+    @else
+
         <table class="table table-bordered">
             <tr>
                 <th>Id</th>
@@ -13,11 +27,7 @@
                 <th>Acciones</th>
             </tr>
 
-    @if( $activeCommunity->nombreRole($usuario->id) != 'admin' )
-        $propiedades = $usuario->propiedades;
-    @endif
-
-            @foreach ($propiedades as $propiedad)
+            @foreach($propiedades as $propiedad)
             <tr>
                 <td>{{ $propiedad->id }}</td>
                 <td>{{ $propiedad->nombre }}</td>
@@ -37,7 +47,7 @@
                     </form>
                 </td>
             </tr>
-            @endforeach
         </table>
-
+            @endforeach
+    @endif
 </x-app-layout>

@@ -33,7 +33,6 @@
     </div>
 </div>
 
-
 <div class="panel panel-default top-spaced">
     <div class="panel-heading ng-binding">
         <b>@lang('Notifications direction')</b>
@@ -57,14 +56,27 @@
                     <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="cp" placeholder=@lang('cp') value="{{ old('cp', $comunidad->cp) }}" {{$btndisabled}} required>
                 </div>
             </div>
-
-            <div class="col-md-3">
+          <!--   <div class="col-md-3">
                 <div class="form-group">
                     <label for="pais">@lang('Country')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('Country') value="{{ old('pais', $comunidad->pais) }}" {{$btndisabled}}>
                 </div>
+            </div> -->
+            <div class="col-md-3 mb-2" >
+                <label for="pais" class="form-label">@lang('Country')</label>
+                <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
+                    <option value="0">@lang('Country')</option>
+                    @forelse($paises as $pais)
+                    @if ( old('pais', $comunidad->pais) == $pais->id )
+                    <option value="{{ $pais->id }}" selected > {{ $pais->nombrePais }} </option>
+                    @else
+                    <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
+                    @endif
+                    @empty
+                    <p>No hay paises</p>
+                    @endforelse
+                </select>
             </div>
-
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="provincia">@lang('province')</label>

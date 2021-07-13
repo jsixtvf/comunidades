@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        @include('partials/navArrayLinks')
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,6 +18,11 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.8/css/fixedHeader.bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
+
         @livewireStyles
         
         <style>
@@ -36,7 +42,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
- <body class="container-fluid p-0">
+    <body class="container-fluid p-0">
     <x-jet-banner />
 
     <div class="row m-0 vh-100">
@@ -59,17 +65,23 @@
                         <div class="accordion-body">
                             @forelse($navDarkLinks as $link)
                             @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
+                            @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
+                            <x-jet-responsive-nav-link href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
+                            {{ __($link['text']) }}
+                            </x-jet-responsive-nav-link>
+                            @else
                             <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                                 {{ __($link['text']) }}
                             </x-jet-responsive-nav-link>
+                            @endif
                             @endif
                             @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
                                 @forelse($navDarkCommunitiesLinks as $link2)
                                     <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
                                         {{ __($link2['text']) }}
                                     </x-jet-responsive-nav-link>
-                                @empty
-                                @endforelse
+                            @empty
+                            @endforelse
                             @endif
                             @empty
                             <h1>El menú no esta disponible</h1>

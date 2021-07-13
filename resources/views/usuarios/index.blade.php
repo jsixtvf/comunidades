@@ -28,7 +28,6 @@
             <th width="280px">Action</th>
         </tr>
         @foreach ($usuarios as $usuario)
-            @if($usuario->role($usuario->id) == 3)
 
             <tr>
                 <td>{{ $usuario->id }}</td>
@@ -47,7 +46,7 @@
                     </form>
                 </td>
             </tr>
-            @endif
+            
         @endforeach
     </table>
 

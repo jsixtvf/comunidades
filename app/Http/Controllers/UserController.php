@@ -7,6 +7,7 @@ use App\Models\Comunidad_User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 //use App\Models\Propietario;
 //use App\Http\Requests\PropietariosRequest;
 
@@ -28,14 +29,13 @@ class UserController extends Controller
     {   // return view("propietario"); //$usuarios = session()->get('activeCommunity')->usuarios;
         // User::latest()->paginate(10);
         $comunidad_activa = session()->get('activeCommunity');
-
         $usuarios = User::join('comunidad_user', 'comunidad_user.user_id', '=', 'users.id')
-            ->where('comunidad_user.comunidad_id','=', $comunidad_activa->id)->get();
-
-       //dd($usuarios);
+            ->where('comunidad_user.comunidad_id','=', $comunidad_activa->id)
+            ->where('comunidad_user.role_id','=', 3)->get(); 
+             
         return view('usuarios.index',
             //compact('usuarios')
-            [//'usuarios' => $usuarios,
+            [
             'usuarios' => $usuarios,
             'activeCommunity' => $comunidad_activa
             ]
@@ -64,6 +64,10 @@ class UserController extends Controller
     {
         $this->msj = 'Se ha creado el usuario';
 
+        $request->replace(['password' => Hash::make( $request->password )] ); // aplicar hash al password
+        
+        //dd($request->get('password'));
+        
         User::create($request->validated());
 
         $new_user = User::latest('created_at')->first();

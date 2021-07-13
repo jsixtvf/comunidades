@@ -36,7 +36,7 @@ class Propietario extends Model
     ];
 
     public function ingreso(){
-        return $this->BelongsTo(ingresos::class);
+        return $this->belongsTo(Ingreso::class);
     }
 
     public function propiedades() {
